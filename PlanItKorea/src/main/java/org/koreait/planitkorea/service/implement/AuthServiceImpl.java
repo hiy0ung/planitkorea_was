@@ -46,6 +46,10 @@ public class AuthServiceImpl implements AuthService {
             return ResponseDto.setFailed(ResponseMessage.INVALID_USER_ID);
         }
 
+        if (!userId.matches("^[a-zA-Z0-9]{8,14}$")) {
+            return ResponseDto.setFailed(ResponseMessage.INVALID_USER_ID);
+        }
+
         if (userPassword == null || userPassword.isEmpty() || checkPassword == null || checkPassword.isEmpty()) {
             return ResponseDto.setFailed(ResponseMessage.INVALID_PASSWORD);
         }
@@ -58,11 +62,11 @@ public class AuthServiceImpl implements AuthService {
             return ResponseDto.setFailed(ResponseMessage.WEAK_PASSWORD);
         }
 
-        if (userName == null || userName.isEmpty() || userName.matches("")) {
+        if (userName == null || userName.isEmpty()) {
             return ResponseDto.setFailed(ResponseMessage.INVALID_NAME);
         }
 
-        if (userBirthDate == null || userBirthDate.isEmpty() || !userBirthDate.matches("^[0-9]{7}$")) {
+        if (userBirthDate == null || userBirthDate.isEmpty() || !userBirthDate.matches("^\\d{8}$")) {
             return ResponseDto.setFailed(ResponseMessage.INVALID_BIRTH_DATE);
         }
 
@@ -70,7 +74,7 @@ public class AuthServiceImpl implements AuthService {
             return ResponseDto.setFailed(ResponseMessage.INVALID_PHONE);
         }
 
-        if (userEmail == null || userEmail.isEmpty() || EmailValidator.getInstance().isValid(userEmail)) {
+        if (userEmail == null || userEmail.isEmpty() || !userEmail.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
             return ResponseDto.setFailed(ResponseMessage.INVALID_EMAIL);
         }
 
