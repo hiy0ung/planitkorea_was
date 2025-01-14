@@ -11,4 +11,8 @@ public interface ReviewService {
     ResponseDto<CreateResponseDto> createReview(Long userId, CreateRequestDto dto);
 
     ResponseDto<List<ProductReviewResponseDto>> getProductReviews(Long productId);
+
+    ResponseDto<List<ProductReviewResponseDto>> getMyReviews(Long userId);
+
+    ResponseDto<Boolean> deleteReview(Long userId, Long reviewId);
 }

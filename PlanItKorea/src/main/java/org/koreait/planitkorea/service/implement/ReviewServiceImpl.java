@@ -75,5 +75,53 @@ public class ReviewServiceImpl implements ReviewService {
         }
     }
 
+    @Override
+    public ResponseDto<List<ProductReviewResponseDto>> getMyReviews(Long userId) {
+        try{
+            List<Object[]> results = reviewRepository.findReviewsWithUserIdByUserId(userId);
+
+            List<ProductReviewResponseDto> data = results.stream()
+                    .map(result -> {
+                        Review review = (Review) result[0];
+                        String userStringId = (String) result[1];
+                        return new ProductReviewResponseDto(
+                                review.getId(),
+                                review.getProductId(),
+                                review.getUserId(),
+                                review.getReviewCommend(),
+                                review.getReviewDate(),
+                                userStringId
+                        );
+                    }).collect(Collectors.toList());
+            return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
+        }
+    }
+
+    @Override
+    public ResponseDto<Boolean> deleteReview(Long userId, Long reviewId) {
+        try{
+            Optional<Review> optionalReview = reviewRepository.findById(reviewId);
+            if(optionalReview.isEmpty()) {
+                return ResponseDto.setFailed(ResponseMessage.NOT_EXIST_DATA);
+            }
+
+            Review deleteReview = optionalReview.get();
+
+            if(!deleteReview.getUserId().equals(userId)) {
+                return ResponseDto.setFailed(ResponseMessage.NO_PERMISSION);
+            }
+
+            reviewRepository.deleteById(reviewId);
+            return ResponseDto.setSuccess(ResponseMessage.SUCCESS, true);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
+        }
+    }
+
 
 }

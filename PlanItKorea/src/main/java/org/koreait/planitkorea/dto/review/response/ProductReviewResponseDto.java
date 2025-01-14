@@ -3,6 +3,7 @@ package org.koreait.planitkorea.dto.review.response;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.koreait.planitkorea.entity.Review;
 
 import java.util.Date;
 
@@ -21,4 +22,12 @@ public class ProductReviewResponseDto {
     private Date reviewDate;
 
     private String userStringId;
+
+    public ProductReviewResponseDto(Review review) {
+        this.id = review.getId();
+        this.productId = review.getProductId();
+        this.userId = review.getUserId();
+        this.reviewCommend = review.getReviewCommend();
+        this.reviewDate = review.getReviewDate();
+    }
 }
