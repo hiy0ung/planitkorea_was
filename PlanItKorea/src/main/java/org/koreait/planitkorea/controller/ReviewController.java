@@ -22,6 +22,7 @@ public class ReviewController {
     private final ReviewService reviewService;
 
     public static final String GET_PRODUCT_REVIEWS = "/{productId}";
+    public static final String DELETE_MY_REVIEWS = "/{reviewId}";
 
     // 리뷰 등록
     @PostMapping
@@ -40,6 +41,27 @@ public class ReviewController {
             @PathVariable Long productId
     ) {
         ResponseDto<List<ProductReviewResponseDto>> response = reviewService.getProductReviews(productId);
+        HttpStatus status = response.isResult() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
+        return ResponseEntity.status(status).body(response);
+    }
+
+    // 내 리뷰 조회
+    @GetMapping
+    public ResponseEntity<ResponseDto<List<ProductReviewResponseDto>>> getMyReviews (
+            @AuthenticationPrincipal Long userId
+    ) {
+        ResponseDto<List<ProductReviewResponseDto>> response = reviewService.getMyReviews(userId);
+        HttpStatus status = response.isResult() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
+        return ResponseEntity.status(status).body(response);
+    }
+
+    // 리뷰 삭제
+    @DeleteMapping(DELETE_MY_REVIEWS)
+    public ResponseEntity<ResponseDto<Boolean>> deleteReview (
+            @AuthenticationPrincipal Long userId,
+            @PathVariable Long reviewId
+    ) {
+        ResponseDto<Boolean> response = reviewService.deleteReview(userId, reviewId);
         HttpStatus status = response.isResult() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
         return ResponseEntity.status(status).body(response);
     }
