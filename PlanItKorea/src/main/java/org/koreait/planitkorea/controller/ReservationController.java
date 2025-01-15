@@ -3,6 +3,7 @@ package org.koreait.planitkorea.controller;
 import lombok.RequiredArgsConstructor;
 import org.koreait.planitkorea.common.constant.ApiMappingPattern;
 import org.koreait.planitkorea.dto.Reservation.request.CreateReservationRequestDto;
+import org.koreait.planitkorea.dto.Reservation.response.GetMyReservationResponseDto;
 import org.koreait.planitkorea.dto.ResponseDto;
 import org.koreait.planitkorea.entity.Reservation;
 import org.koreait.planitkorea.service.ReservationService;
@@ -36,10 +37,10 @@ public class ReservationController {
 
     // 내 예약 확인
     @GetMapping
-    public ResponseEntity<ResponseDto<List<Reservation>>> getMyReservation (
+    public ResponseEntity<ResponseDto<List<GetMyReservationResponseDto>>> getMyReservation (
             @AuthenticationPrincipal Long userId
     ) {
-        ResponseDto<List<Reservation>> response = reservationService.getMyReservation(userId);
+        ResponseDto<List<GetMyReservationResponseDto>> response = reservationService.getMyReservation(userId);
         HttpStatus status = response.isResult() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
         return ResponseEntity.status(status).body(response);
     }
