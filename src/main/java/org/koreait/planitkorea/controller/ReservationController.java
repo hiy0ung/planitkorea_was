@@ -2,6 +2,11 @@ package org.koreait.planitkorea.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.koreait.planitkorea.common.constant.ApiMappingPattern;
+<<<<<<< HEAD:src/main/java/org/koreait/planitkorea/controller/ReservationController.java
+=======
+import org.koreait.planitkorea.dto.Reservation.request.CreateReservationRequestDto;
+import org.koreait.planitkorea.dto.Reservation.response.GetMyReservationResponseDto;
+>>>>>>> 65e6b84 (fix: reservation 로직 수정):PlanItKorea/src/main/java/org/koreait/planitkorea/controller/ReservationController.java
 import org.koreait.planitkorea.dto.ResponseDto;
 import org.koreait.planitkorea.dto.reservation.request.CreateReservationRequestDto;
 import org.koreait.planitkorea.dto.reservation.response.GetMyReservationResponseDto;

@@ -63,6 +63,7 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
                                 new AntPathRequestMatcher("/api/v1/auth/**"),
+<<<<<<< HEAD:src/main/java/org/koreait/planitkorea/config/WebSecurityConfig.java
                                 new AntPathRequestMatcher("/api/v1/users/find-id"),
                                 new AntPathRequestMatcher("/api/v1/users/mails/**"),
                                 new AntPathRequestMatcher("/api/v1/boards/**"),
@@ -71,6 +72,13 @@ public class WebSecurityConfig {
                                 new AntPathRequestMatcher("/api/v1/reviews/{productId}"),
                                 new AntPathRequestMatcher("/oauth2/callback/*"),
                                 new AntPathRequestMatcher("/api/v1/reviews/auth/**")
+=======
+<<<<<<< HEAD
+                                new AntPathRequestMatcher("/api/v1/boards/**")
+=======
+                                new AntPathRequestMatcher("/image/**")
+>>>>>>> f08a91c (pyj)
+>>>>>>> 65e6b84 (fix: reservation 로직 수정):PlanItKorea/src/main/java/org/koreait/planitkorea/config/WebSecurityConfig.java
                         )
                         .permitAll()
                         .anyRequest().authenticated())
