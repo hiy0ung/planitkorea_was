@@ -3,6 +3,7 @@ package org.koreait.planitkorea.service.implement;
 import lombok.RequiredArgsConstructor;
 import org.koreait.planitkorea.common.constant.ResponseMessage;
 import org.koreait.planitkorea.dto.Reservation.request.CreateReservationRequestDto;
+import org.koreait.planitkorea.dto.Reservation.response.GetMyReservationResponseDto;
 import org.koreait.planitkorea.dto.ResponseDto;
 import org.koreait.planitkorea.entity.Reservation;
 import org.koreait.planitkorea.entity.Review;
@@ -10,10 +11,13 @@ import org.koreait.planitkorea.repository.ReservationRepository;
 import org.koreait.planitkorea.service.ReservationService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -28,8 +32,8 @@ public class ReservationServiceImpl implements ReservationService {
         Long subProductId = dto.getSubProductId();
         Long person = dto.getPerson();
         String totalPrice = dto.getTotalPrice();
-        Date startDate = dto.getStartDate();
-        Date endDate = dto.getEndDate();
+        LocalDateTime startDate = dto.getStartDate();
+        LocalDateTime endDate = dto.getEndDate();
 
         try {
             data = Reservation.builder()
@@ -55,13 +59,30 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public ResponseDto<List<Reservation>> getMyReservation(Long userId) {
+    public ResponseDto<List<GetMyReservationResponseDto>> getMyReservation(Long userId) {
         try {
-            List<Reservation> reservations = reservationRepository.findAllByUserId(userId);
-            if (reservations.isEmpty()) {
-                return ResponseDto.setSuccess( ResponseMessage.NOT_EXIST_DATA, null);
-            }
-            return ResponseDto.setSuccess(ResponseMessage.SUCCESS, reservations);
+            List<Object[]> results = reservationRepository.findAllByUserId(userId);
+
+            List<GetMyReservationResponseDto> data = results.stream()
+                    .map(result -> {
+                        Reservation reservation = (Reservation) result[0];
+                        String productImage = (String) result[1];
+                        String productName = (String) result[2];
+                        return new GetMyReservationResponseDto(
+                                reservation.getId(),
+                                reservation.getUserId(),
+                                reservation.getProductId(),
+                                reservation.getSubProductId(),
+                                reservation.getPerson(),
+                                reservation.getTotalPrice(),
+                                reservation.getStartDate(),
+                                reservation.getEndDate(),
+                                reservation.getReservationStatus(),
+                                productImage,
+                                productName
+                        );
+                    }).collect(Collectors.toList());
+            return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
 
         } catch (Exception e) {
             e.printStackTrace();

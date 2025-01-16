@@ -8,4 +8,6 @@ public class ApiMappingPattern {
 
     public static final String BOARD = "api/v1/boards";
     public static final String INQUIRY = "api/v1/inquiries";
+  
+    public static final String USER = "api/v1/users";
 }
