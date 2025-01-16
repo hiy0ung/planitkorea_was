@@ -1,11 +1,17 @@
 package org.koreait.planitkorea.controller;
 
+<<<<<<< HEAD:src/main/java/org/koreait/planitkorea/controller/UserController.java
 import jakarta.validation.Valid;
+=======
+>>>>>>> 8152199 (feat: user 조회, 수정, 탈퇴 추가):PlanItKorea/src/main/java/org/koreait/planitkorea/controller/UserController.java
 import lombok.RequiredArgsConstructor;
 import org.koreait.planitkorea.common.constant.ApiMappingPattern;
 import org.koreait.planitkorea.dto.ResponseDto;
 import org.koreait.planitkorea.dto.User.request.DeleteRequestDto;
+<<<<<<< HEAD:src/main/java/org/koreait/planitkorea/controller/UserController.java
 import org.koreait.planitkorea.dto.User.request.UpdatePasswordDto;
+=======
+>>>>>>> 8152199 (feat: user 조회, 수정, 탈퇴 추가):PlanItKorea/src/main/java/org/koreait/planitkorea/controller/UserController.java
 import org.koreait.planitkorea.dto.User.request.UpdateUserRequestDto;
 import org.koreait.planitkorea.entity.User;
 import org.koreait.planitkorea.service.UserService;
@@ -21,9 +27,12 @@ public class UserController {
 
     private final UserService userService;
 
+<<<<<<< HEAD:src/main/java/org/koreait/planitkorea/controller/UserController.java
     public static final String FIND_USER_ID = "/find-id";
     private static final String RESET_PW = "/password";
 
+=======
+>>>>>>> 8152199 (feat: user 조회, 수정, 탈퇴 추가):PlanItKorea/src/main/java/org/koreait/planitkorea/controller/UserController.java
     // 내 정보 조회
     @GetMapping
     public ResponseEntity<ResponseDto<User>> getMyUserData (
@@ -55,6 +64,7 @@ public class UserController {
         HttpStatus status = response.isResult() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
         return ResponseEntity.status(status).body(response);
     }
+<<<<<<< HEAD:src/main/java/org/koreait/planitkorea/controller/UserController.java
 
 
     // 아이디 찾기
@@ -77,4 +87,6 @@ public class UserController {
         HttpStatus status = response.isResult() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
         return ResponseEntity.status(status).body(response);
     }
+=======
+>>>>>>> 8152199 (feat: user 조회, 수정, 탈퇴 추가):PlanItKorea/src/main/java/org/koreait/planitkorea/controller/UserController.java
 }
