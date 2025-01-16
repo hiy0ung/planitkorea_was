@@ -1,0 +1,20 @@
+package org.koreait.planitkorea.dto.Inquiry.response;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.koreait.planitkorea.entity.Inquiry;
+import org.koreait.planitkorea.entity.InquiryCategory;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class InquiryAllGetResponseDto {
+    private String inquiryTitle;
+    private InquiryCategory inquiryCategory;
+
+    public InquiryAllGetResponseDto(Inquiry inquiry) {
+        this.inquiryTitle = inquiry.getInquiryTitle();
+        this.inquiryCategory = inquiry.getInquiryCategory();
+    }
+}
