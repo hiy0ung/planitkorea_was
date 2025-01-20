@@ -32,7 +32,7 @@ public class InquiryController {
     @PostMapping(INQUIRY_CREATE)
     public ResponseEntity<ResponseDto<InquiryResponseDto>> createInquiry(
             @AuthenticationPrincipal Long id,
-            @RequestBody InquiryRequestDto dto
+            @ModelAttribute InquiryRequestDto dto
     ) {
       ResponseDto<InquiryResponseDto> response = inquiryService.createInquiry(id, dto);
       HttpStatus status = response.isResult() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
@@ -62,13 +62,16 @@ public class InquiryController {
     @PutMapping(INQUIRY_PUT)
     public ResponseEntity<ResponseDto<InquiryResponseDto>> updateInquiry(
             @AuthenticationPrincipal Long id,
-            @PathVariable Long inquiryId,
-            @RequestBody InquiryRequestDto dto
+            @PathVariable String inquiryId,
+            @ModelAttribute InquiryRequestDto dto
     ) {
-        ResponseDto<InquiryResponseDto> response = inquiryService.updateInquiry(id, inquiryId, dto);
+        Long convertInquiryId = Long.parseLong(inquiryId);
+        ResponseDto<InquiryResponseDto> response = inquiryService.updateInquiry(id, convertInquiryId, dto);
         HttpStatus status = response.isResult() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
         return ResponseEntity.status(status).body(response);
     }
+
+
 
     // 삭제
     @DeleteMapping(INQUIRY_DELETE)

@@ -10,6 +10,7 @@ import org.koreait.planitkorea.entity.Inquiry;
 import org.koreait.planitkorea.entity.User;
 import org.koreait.planitkorea.repository.InquiryRepository;
 import org.koreait.planitkorea.repository.UserRepository;
+import org.koreait.planitkorea.service.ConvertImgService;
 import org.koreait.planitkorea.service.InquiryService;
 import org.springframework.stereotype.Service;
 
@@ -21,10 +22,17 @@ import java.util.stream.Collectors;
 public class InquiryServiceImpl implements InquiryService {
     private final UserRepository userRepository;
     private final InquiryRepository inquiryRepository;
+    private final ConvertImgService convertImgService;
+
 
     @Override
     public ResponseDto<InquiryResponseDto> createInquiry(Long id, InquiryRequestDto dto) {
         InquiryResponseDto data = null;
+        String inquiryImage = null;
+
+        if (dto.getInquiryImage() != null && !dto.getInquiryImage().isEmpty()) {
+            inquiryImage = convertImgService.convertImgFile(dto.getInquiryImage(), "inquiries");
+        }
 
         try {
             User user = userRepository.findById(id).orElse(null);
@@ -36,7 +44,7 @@ public class InquiryServiceImpl implements InquiryService {
                     .inquiryTitle(dto.getInquiryTitle())
                     .inquiryCategory(dto.getInquiryCategory())
                     .inquiryContent(dto.getInquiryContent())
-                    .inquiryImage(dto.getInquiryImage())
+                    .inquiryImage(inquiryImage)
                     .user(user)
                     .build();
             inquiryRepository.save(inquiry);
@@ -69,6 +77,7 @@ public class InquiryServiceImpl implements InquiryService {
     public ResponseDto<InquiryResponseDto> getInquiryById(Long id, Long inquiryId) {
         InquiryResponseDto data = null;
 
+
         try {
             User user = userRepository.findById(id).orElse(null);
             if (user == null) {
@@ -92,8 +101,13 @@ public class InquiryServiceImpl implements InquiryService {
     }
 
     @Override
-    public ResponseDto<InquiryResponseDto> updateInquiry(Long id, Long inquiryId, InquiryRequestDto dto) {
+    public ResponseDto<InquiryResponseDto> updateInquiry(Long id, Long convertInquiryId, InquiryRequestDto dto) {
         InquiryResponseDto data = null;
+        String inquiryImage = null;
+
+        if (dto.getInquiryImage() != null && !dto.getInquiryImage().isEmpty()) {
+            inquiryImage = convertImgService.convertImgFile(dto.getInquiryImage(), "inquiries");
+        }
 
         try {
             User user = userRepository.findById(id).orElse(null);
@@ -101,7 +115,7 @@ public class InquiryServiceImpl implements InquiryService {
                 return ResponseDto.setFailed(ResponseMessage.NOT_EXIST_USER);
             }
 
-            Inquiry inquiry = inquiryRepository.findById(inquiryId).orElse(null);
+            Inquiry inquiry = inquiryRepository.findById(convertInquiryId).orElse(null);
             if (inquiry == null || !inquiry.getUser().getId().equals(id)) {
                 return ResponseDto.setFailed(ResponseMessage.NOT_EXIST_DATA);
             }
@@ -109,7 +123,7 @@ public class InquiryServiceImpl implements InquiryService {
             inquiry.setInquiryTitle(dto.getInquiryTitle());
             inquiry.setInquiryCategory(dto.getInquiryCategory());
             inquiry.setInquiryContent(dto.getInquiryContent());
-            inquiry.setInquiryImage(dto.getInquiryImage());
+            inquiry.setInquiryImage(inquiryImage);
 
             inquiryRepository.save(inquiry);
 

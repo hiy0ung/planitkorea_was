@@ -12,7 +12,7 @@ import java.nio.file.Paths;
 import java.util.UUID;
 
 @Service
-public class convertImgService {
+public class ConvertImgService {
     @Value("${user.dir}")
     private String projectPath;
 
