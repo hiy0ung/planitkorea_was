@@ -14,7 +14,7 @@ public interface InquiryService {
 
     ResponseDto<InquiryResponseDto> getInquiryById(Long id, Long inquiryId);
 
-    ResponseDto<InquiryResponseDto> updateInquiry(Long id, Long inquiryId, InquiryRequestDto dto);
+    ResponseDto<InquiryResponseDto> updateInquiry(Long id, Long convertInquiryId, InquiryRequestDto dto);
 
     ResponseDto<Void> deleteInquiry(Long id, Long inquiryId);
 }

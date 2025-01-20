@@ -10,10 +10,12 @@ import org.koreait.planitkorea.entity.InquiryCategory;
 @NoArgsConstructor
 @AllArgsConstructor
 public class InquiryAllGetResponseDto {
+    private Long inquiryId;
     private String inquiryTitle;
     private InquiryCategory inquiryCategory;
 
     public InquiryAllGetResponseDto(Inquiry inquiry) {
+        this.inquiryId = inquiry.getId();
         this.inquiryTitle = inquiry.getInquiryTitle();
         this.inquiryCategory = inquiry.getInquiryCategory();
     }
