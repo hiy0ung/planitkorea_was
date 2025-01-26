@@ -53,9 +53,12 @@ dependencies {
 
 	implementation('com.fasterxml.jackson.core:jackson-databind')
 	implementation('com.fasterxml.jackson.datatype:jackson-datatype-jsr310')
+<<<<<<< HEAD:build.gradle
 
 	// 스프링 이메일 기능 제공
 	implementation('org.springframework.boot:spring-boot-starter-mail')
+=======
+>>>>>>> 6ee97db (feat: OAuth2):PlanItKorea/build.gradle
 }
 
 test {

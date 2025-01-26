@@ -75,6 +75,7 @@ public class WebSecurityConfig {
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                 new AntPathRequestMatcher("/api/v1/boards/**")
 =======
                                 new AntPathRequestMatcher("/image/**")
@@ -87,7 +88,15 @@ public class WebSecurityConfig {
                                 new AntPathRequestMatcher("/image/**"),
                                 new AntPathRequestMatcher("/api/v1/products/**")
 >>>>>>> 3c1f589 (20250131 shy)
+<<<<<<< HEAD:src/main/java/org/koreait/planitkorea/config/WebSecurityConfig.java
 >>>>>>> abf6421 (refactor: 대소문자변경):PlanItKorea/src/main/java/org/koreait/planitkorea/config/WebSecurityConfig.java
+=======
+=======
+                                new AntPathRequestMatcher("/api/v1/boards/**"),
+                                new AntPathRequestMatcher("/image/**"),
+                                new AntPathRequestMatcher("/oauth2/callback/*")
+>>>>>>> bfdd46a (20250126 OAuth2)
+>>>>>>> 6ee97db (feat: OAuth2):PlanItKorea/src/main/java/org/koreait/planitkorea/config/WebSecurityConfig.java
                         )
                         .permitAll()
                         .anyRequest().authenticated())

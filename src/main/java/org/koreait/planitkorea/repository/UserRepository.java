@@ -13,6 +13,7 @@ public interface UserRepository  extends JpaRepository<User, Long> {
     boolean existsByUserId(String userId);
 
     boolean existsByUserEmail(String userEmail);
+<<<<<<< HEAD:src/main/java/org/koreait/planitkorea/repository/UserRepository.java
 
     User findBySnsIdAndJoinPath(String snsId, String registration);
 
@@ -21,4 +22,9 @@ public interface UserRepository  extends JpaRepository<User, Long> {
     Optional<User> findByUserIdAndUserName(String userId, String userName);
 
     Optional<User> findByUserNameAndUserPhone(String userName, String userPhone);
+=======
+    User findBySnsIdAndJoinPath(String snsId, String registration);
+
+    Optional<User> findByUserName(String userName);
+>>>>>>> 6ee97db (feat: OAuth2):PlanItKorea/src/main/java/org/koreait/planitkorea/repository/UserRepository.java
 }
