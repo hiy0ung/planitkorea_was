@@ -46,6 +46,12 @@ dependencies {
 
 	// 추가된 classmate 의존성
 	implementation('com.fasterxml:classmate:1.5.1')
+
+	// OAuth2
+	implementation('org.springframework.boot:spring-boot-starter-oauth2-client')
+
+	implementation('com.fasterxml.jackson.core:jackson-databind')
+	implementation('com.fasterxml.jackson.datatype:jackson-datatype-jsr310')
 }
 
 test {
