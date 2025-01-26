@@ -2,6 +2,8 @@ package org.koreait.planitkorea.config;
 
 import lombok.RequiredArgsConstructor;
 import org.koreait.planitkorea.filter.JwtAuthenticationFilter;
+import org.koreait.planitkorea.handler.OAuth2SuccessHandler;
+import org.koreait.planitkorea.service.implement.OAuth2UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,7 +33,11 @@ public class WebSecurityConfig {
 
     @Lazy
     @Autowired
+
     private JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final OAuth2SuccessHandler oAuth2SuccessHandler;
+    private final OAuth2UserServiceImpl oAuth2Service;
+
     @Bean
     public CorsFilter corsFilter() {
 
@@ -58,11 +64,17 @@ public class WebSecurityConfig {
                         .requestMatchers(
                                 new AntPathRequestMatcher("/api/v1/auth/**"),
                                 new AntPathRequestMatcher("/api/v1/boards/**"),
-                                new AntPathRequestMatcher("/image/**")
+                                new AntPathRequestMatcher("/image/**"),
+                                new AntPathRequestMatcher("/oauth2/callback/*")
                         )
                         .permitAll()
                         .anyRequest().authenticated())
-
+                .oauth2Login(oauth2 -> oauth2
+                        .redirectionEndpoint(endpoint -> endpoint.baseUri("/oauth2/callback/*"))
+                        .authorizationEndpoint(endpoint -> endpoint.baseUri("/api/v1/auth/sns-sign-in"))
+                        .userInfoEndpoint(endpoint -> endpoint.userService(oAuth2Service))
+                        .successHandler(oAuth2SuccessHandler)
+                )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }

@@ -36,10 +36,10 @@ public class Reservation {
     private String totalPrice;
 
     @Column(name = "start_date", nullable = false)
-    private LocalDateTime startDate;
+    private LocalDate startDate;
 
     @Column(name = "end_date", nullable = false)
-    private LocalDateTime endDate;
+    private LocalDate endDate;
 
     @Column(name = "reservation_status", nullable = false, columnDefinition = "INT DEFAULT 1")
     private int reservationStatus;

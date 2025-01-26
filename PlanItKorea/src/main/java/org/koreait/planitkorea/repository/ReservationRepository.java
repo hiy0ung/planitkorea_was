@@ -19,6 +19,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
 
     @Modifying
     @Transactional
-    @Query("UPDATE Reservation r SET r.reservationStatus = 2 WHERE r.reservationStatus = 1 AND r.endDate < CURRENT_TIMESTAMP")
+    @Query("UPDATE Reservation r SET r.reservationStatus = 2 WHERE r.reservationStatus = 1 AND r.endDate < current_date")
     void updateExpiredReservations();
 }
+
