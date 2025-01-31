@@ -3,7 +3,7 @@ package org.koreait.planitkorea.service.implement;
 import lombok.RequiredArgsConstructor;
 import org.koreait.planitkorea.common.constant.ResponseMessage;
 import org.koreait.planitkorea.dto.ResponseDto;
-import org.koreait.planitkorea.dto.WishList.response.WishListResponseDto;
+import org.koreait.planitkorea.dto.wishList.response.WishListResponseDto;
 import org.koreait.planitkorea.entity.Product;
 import org.koreait.planitkorea.entity.User;
 import org.koreait.planitkorea.entity.WishList;

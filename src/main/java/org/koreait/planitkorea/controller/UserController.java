@@ -7,12 +7,17 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.koreait.planitkorea.common.constant.ApiMappingPattern;
 import org.koreait.planitkorea.dto.ResponseDto;
+<<<<<<< HEAD:src/main/java/org/koreait/planitkorea/controller/UserController.java
 import org.koreait.planitkorea.dto.User.request.DeleteRequestDto;
 <<<<<<< HEAD:src/main/java/org/koreait/planitkorea/controller/UserController.java
 import org.koreait.planitkorea.dto.User.request.UpdatePasswordDto;
 =======
 >>>>>>> 8152199 (feat: user 조회, 수정, 탈퇴 추가):PlanItKorea/src/main/java/org/koreait/planitkorea/controller/UserController.java
 import org.koreait.planitkorea.dto.User.request.UpdateUserRequestDto;
+=======
+import org.koreait.planitkorea.dto.user.request.DeleteRequestDto;
+import org.koreait.planitkorea.dto.user.request.UpdateUserRequestDto;
+>>>>>>> abf6421 (refactor: 대소문자변경):PlanItKorea/src/main/java/org/koreait/planitkorea/controller/UserController.java
 import org.koreait.planitkorea.entity.User;
 import org.koreait.planitkorea.service.UserService;
 import org.springframework.http.HttpStatus;

@@ -4,10 +4,14 @@ import lombok.RequiredArgsConstructor;
 import org.koreait.planitkorea.common.constant.ApiMappingPattern;
 import org.koreait.planitkorea.dto.ResponseDto;
 <<<<<<< HEAD:src/main/java/org/koreait/planitkorea/controller/WishListController.java
+<<<<<<< HEAD:src/main/java/org/koreait/planitkorea/controller/WishListController.java
 import org.koreait.planitkorea.dto.wishList.response.WishListResponseDto;
 =======
 import org.koreait.planitkorea.dto.WishList.response.WishListResponseDto;
 >>>>>>> eca9fe5 (feat: wishlist 로직 추가):PlanItKorea/src/main/java/org/koreait/planitkorea/controller/WishListController.java
+=======
+import org.koreait.planitkorea.dto.wishList.response.WishListResponseDto;
+>>>>>>> abf6421 (refactor: 대소문자변경):PlanItKorea/src/main/java/org/koreait/planitkorea/controller/WishListController.java
 import org.koreait.planitkorea.service.WishListService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package org.koreait.planitkorea.dto.WishList.response;
+package org.koreait.planitkorea.dto.wishList.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

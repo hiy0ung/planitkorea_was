@@ -1,8 +1,8 @@
 package org.koreait.planitkorea.service;
 
 import org.koreait.planitkorea.dto.ResponseDto;
-import org.koreait.planitkorea.dto.User.request.DeleteRequestDto;
-import org.koreait.planitkorea.dto.User.request.UpdateUserRequestDto;
+import org.koreait.planitkorea.dto.user.request.DeleteRequestDto;
+import org.koreait.planitkorea.dto.user.request.UpdateUserRequestDto;
 import org.koreait.planitkorea.entity.User;
 
 public interface UserService {
