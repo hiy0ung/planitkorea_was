@@ -1,4 +1,4 @@
-package org.koreait.planitkorea.dto.User.request;
+package org.koreait.planitkorea.dto.user.request;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;

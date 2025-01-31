@@ -41,12 +41,10 @@ public class ProductServiceImpl implements ProductService {
                             (String) result[6],
                             (String) result[7],
                             (int) result[8],
-                            (String) result[9],
-                            (Long) result[10],
-                            (LocalDate) result[11],
-                            (LocalDate) result[12]
+                            (String) result[9]
                     )).collect(Collectors.toList());
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
         }
         return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
