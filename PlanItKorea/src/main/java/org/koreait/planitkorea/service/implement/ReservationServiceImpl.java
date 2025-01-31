@@ -2,19 +2,23 @@ package org.koreait.planitkorea.service.implement;
 
 import lombok.RequiredArgsConstructor;
 import org.koreait.planitkorea.common.constant.ResponseMessage;
-import org.koreait.planitkorea.dto.Reservation.request.CreateReservationRequestDto;
-import org.koreait.planitkorea.dto.Reservation.response.GetMyReservationResponseDto;
+
 import org.koreait.planitkorea.dto.ResponseDto;
+import org.koreait.planitkorea.dto.reservation.request.CreateReservationRequestDto;
+import org.koreait.planitkorea.dto.reservation.response.GetMyReservationResponseDto;
+import org.koreait.planitkorea.dto.reservation.response.ReservationResponseDto;
+import org.koreait.planitkorea.entity.Product;
 import org.koreait.planitkorea.entity.Reservation;
-import org.koreait.planitkorea.entity.Review;
+import org.koreait.planitkorea.entity.SubProduct;
+import org.koreait.planitkorea.entity.User;
+import org.koreait.planitkorea.repository.ProductRepository;
 import org.koreait.planitkorea.repository.ReservationRepository;
+import org.koreait.planitkorea.repository.SubProductRepository;
+import org.koreait.planitkorea.repository.UserRepository;
 import org.koreait.planitkorea.service.ReservationService;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -24,23 +28,32 @@ import java.util.stream.Collectors;
 public class ReservationServiceImpl implements ReservationService {
 
     private final ReservationRepository reservationRepository;
+    private final UserRepository userRepository;
+    private final ProductRepository productRepository;
+    private final SubProductRepository subProductRepository;
 
     @Override
-    public ResponseDto<Reservation> createReservation(Long userId, CreateReservationRequestDto dto) {
-        Reservation data = null;
-        Long productId = dto.getProductId();
-        Long subProductId = dto.getSubProductId();
+    public ResponseDto<ReservationResponseDto> createReservation(Long userId, CreateReservationRequestDto dto) {
+        ReservationResponseDto data = null;
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException(ResponseMessage.NOT_EXIST_USER));
+        Product product = productRepository.findById(dto.getProductId())
+                .orElseThrow(() -> new IllegalArgumentException(ResponseMessage.NOT_EXIST_DATA));
+        SubProduct subProduct = subProductRepository.findById(dto.getSubProductId())
+                .orElseThrow(() -> new IllegalArgumentException(ResponseMessage.NOT_EXIST_DATA));
+
         Long person = dto.getPerson();
         String totalPrice = dto.getTotalPrice();
         LocalDateTime startDate = dto.getStartDate();
         LocalDateTime endDate = dto.getEndDate();
 
         try {
-            data = Reservation.builder()
+            Reservation reservation = Reservation.builder()
                     .id(null)
-                    .userId(userId)
-                    .productId(productId)
-                    .subProductId(subProductId)
+                    .user(user)
+                    .product(product)
+                    .subProduct(subProduct)
                     .person(person)
                     .totalPrice(totalPrice)
                     .startDate(LocalDate.from(startDate))
@@ -48,7 +61,8 @@ public class ReservationServiceImpl implements ReservationService {
                     .reservationStatus(1)
                     .build();
 
-            reservationRepository.save(data);
+            reservationRepository.save(reservation);
+            data = new ReservationResponseDto(reservation);
             return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
 
         } catch (Exception e) {
@@ -70,9 +84,9 @@ public class ReservationServiceImpl implements ReservationService {
                         String productName = (String) result[2];
                         return new GetMyReservationResponseDto(
                                 reservation.getId(),
-                                reservation.getUserId(),
-                                reservation.getProductId(),
-                                reservation.getSubProductId(),
+                                reservation.getUser().getId(),
+                                reservation.getProduct().getId(),
+                                reservation.getSubProduct().getId(),
                                 reservation.getPerson(),
                                 reservation.getTotalPrice(),
                                 reservation.getStartDate().atStartOfDay(),
@@ -82,7 +96,7 @@ public class ReservationServiceImpl implements ReservationService {
                                 productName
                         );
                     }).collect(Collectors.toList());
-            return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
+            return ResponseDto.setSuccess(ResponseMessage.SUCCESS, null);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -101,7 +115,7 @@ public class ReservationServiceImpl implements ReservationService {
 
             Reservation deleteData = optionalReservation.get();
 
-            if(!deleteData.getUserId().equals(userId)) {
+            if(!deleteData.getUser().getId().equals(userId)) {
                 return ResponseDto.setFailed(ResponseMessage.NO_PERMISSION);
             }
 

@@ -2,28 +2,23 @@ package org.koreait.planitkorea.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "product_images")
+@Table(name = "Sub_Product_Images")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-public class ProductImage {
+public class SubProductImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @Column(name = "product_id")
-//    private Long productId;
-
     @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false)
-    private Product product;
+    @JoinColumn(name = "sub_product_id", nullable = false)
+    private SubProduct subProduct;
 
-    @Column(name = "product_image")
-    private String productImage;
+    @Column
+    private String subProductImage;
 }

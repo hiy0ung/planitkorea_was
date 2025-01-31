@@ -13,8 +13,11 @@ import java.util.List;
 @Repository
 public interface ReservationRepository extends JpaRepository<Reservation, Long> {
 
-    @Query("SELECT r, pi.productImage, p.productName FROM Reservation r JOIN ProductImage pi ON " +
-            "r.productId = pi.productId JOIN Product p ON r.productId = p.id WHERE r.userId = :userId")
+    @Query("SELECT r, pi.productImage, p.productName " +
+            "FROM Reservation r " +
+            "JOIN r.product p " +
+            "JOIN ProductImage pi ON  p.id = pi.product.id " +
+            "WHERE r.user.id = :userId")
     List<Object[]> findAllByUserId(@Param("userId") Long userId);
 
     @Modifying

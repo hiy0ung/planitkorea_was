@@ -1,6 +1,6 @@
 package org.koreait.planitkorea.service;
 
-import org.koreait.planitkorea.dto.Board.Response.BoardResponseDto;
+import org.koreait.planitkorea.dto.board.Response.BoardResponseDto;
 import org.koreait.planitkorea.dto.ResponseDto;
 import org.koreait.planitkorea.entity.BoardType;
 

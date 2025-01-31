@@ -20,14 +20,17 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user_id", nullable = false)
-    private Long userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
-    @Column(name = "product_id", nullable = false)
-    private Long productId;
+    @ManyToOne
+    @JoinColumn(name = "product_id", nullable = false)
+    private Product product;
 
-    @Column(name = "sub_product_id", nullable = false)
-    private Long subProductId;
+    @ManyToOne
+    @JoinColumn(name = "sub_product_id", nullable = false)
+    private SubProduct subProduct;
 
     @Column(name = "person", nullable = false)
     private Long person;
