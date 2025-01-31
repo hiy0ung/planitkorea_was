@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.koreait.planitkorea.common.constant.ApiMappingPattern;
 import org.koreait.planitkorea.dto.ResponseDto;
 import org.koreait.planitkorea.dto.User.request.DeleteRequestDto;
+import org.koreait.planitkorea.dto.User.request.UpdatePasswordDto;
 import org.koreait.planitkorea.dto.User.request.UpdateUserRequestDto;
 import org.koreait.planitkorea.entity.User;
 import org.koreait.planitkorea.service.UserService;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     private final UserService userService;
+
+    private static final String RESET_PW = "/password";
 
     // 내 정보 조회
     @GetMapping
@@ -47,6 +50,16 @@ public class UserController {
             @RequestBody DeleteRequestDto dto
     ) {
         ResponseDto<Boolean> response = userService.deleteUser(id, dto);
+        HttpStatus status = response.isResult() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
+        return ResponseEntity.status(status).body(response);
+    }
+
+    @PutMapping(RESET_PW)
+    public ResponseEntity<ResponseDto<Boolean>> resetPassword (
+            @AuthenticationPrincipal Long id,
+            @RequestBody UpdatePasswordDto dto
+    ) {
+        ResponseDto<Boolean> response = userService.resetPassword(id, dto);
         HttpStatus status = response.isResult() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
         return ResponseEntity.status(status).body(response);
     }

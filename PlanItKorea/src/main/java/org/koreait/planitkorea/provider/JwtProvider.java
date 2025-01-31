@@ -20,6 +20,9 @@ public class JwtProvider {
     @Value("${jwt.expiration}")
     private int jwtExpirationMs;
 
+    @Value("${mail.auth-code-expiration-millis}")
+    private int jwtEmailExpirationMs;
+
     public int getExpiration() {
         return jwtExpirationMs;
     }
@@ -34,6 +37,15 @@ public class JwtProvider {
                 .claim("id", id)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + jwtExpirationMs))
+                .signWith(key, SignatureAlgorithm.HS256)
+                .compact();
+    }
+
+    public String generateEmailValidToken(Long id) {
+        return Jwts.builder()
+                .claim("id", id)
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + jwtEmailExpirationMs))
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
     }
