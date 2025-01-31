@@ -3,11 +3,13 @@ package org.koreait.planitkorea.service.implement;
 import lombok.RequiredArgsConstructor;
 import org.koreait.planitkorea.common.constant.ResponseMessage;
 import org.koreait.planitkorea.dto.ResponseDto;
-import org.koreait.planitkorea.dto.user.request.DeleteRequestDto;
-import org.koreait.planitkorea.dto.user.request.UpdateUserRequestDto;
+import org.koreait.planitkorea.dto.User.request.DeleteRequestDto;
+import org.koreait.planitkorea.dto.User.request.UpdatePasswordDto;
+import org.koreait.planitkorea.dto.User.request.UpdateUserRequestDto;
 import org.koreait.planitkorea.entity.User;
 import org.koreait.planitkorea.repository.UserRepository;
 import org.koreait.planitkorea.service.UserService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -17,6 +19,7 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     public ResponseDto<User> getMyUserData(Long id) {
@@ -84,5 +87,29 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Override
+    public ResponseDto<Boolean> resetPassword(Long id, UpdatePasswordDto dto) {
+        String newPassword = dto.getNewPassword();
+        if(newPassword == null || newPassword.isEmpty() || !newPassword.matches("^(?=.*[!@#$%^&*])[A-Za-z\\d!@#$%^&*]{8,}$")) {
+            return ResponseDto.setFailed(ResponseMessage.VALIDATION_FAIL);
+        }
+        try {
+            Optional<User> optionalUser = userRepository.findById(id);
+            if(optionalUser.isEmpty()) {
+                return ResponseDto.setSuccess(ResponseMessage.NOT_EXIST_DATA, false);
+            }
+
+            String encodedPassword = bCryptPasswordEncoder.encode(newPassword);
+
+            User user = optionalUser.get();
+            user.setUserPassword(encodedPassword);
+            userRepository.save(user);
+
+            return ResponseDto.setSuccess(ResponseMessage.SUCCESS, true);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
+        }
+    }
 
 }

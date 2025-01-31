@@ -56,8 +56,8 @@ public class ReservationServiceImpl implements ReservationService {
                     .subProduct(subProduct)
                     .person(person)
                     .totalPrice(totalPrice)
-                    .startDate(startDate)
-                    .endDate(endDate)
+                    .startDate(LocalDate.from(startDate))
+                    .endDate(LocalDate.from(endDate))
                     .reservationStatus(1)
                     .build();
 
@@ -89,8 +89,8 @@ public class ReservationServiceImpl implements ReservationService {
                                 reservation.getSubProduct().getId(),
                                 reservation.getPerson(),
                                 reservation.getTotalPrice(),
-                                reservation.getStartDate(),
-                                reservation.getEndDate(),
+                                reservation.getStartDate().atStartOfDay(),
+                                reservation.getEndDate().atStartOfDay(),
                                 reservation.getReservationStatus(),
                                 productImage,
                                 productName
