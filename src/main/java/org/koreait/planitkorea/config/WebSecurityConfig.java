@@ -95,8 +95,15 @@ public class WebSecurityConfig {
                                 new AntPathRequestMatcher("/api/v1/boards/**"),
                                 new AntPathRequestMatcher("/image/**"),
                                 new AntPathRequestMatcher("/oauth2/callback/*")
+<<<<<<< HEAD
 >>>>>>> bfdd46a (20250126 OAuth2)
+<<<<<<< HEAD:src/main/java/org/koreait/planitkorea/config/WebSecurityConfig.java
 >>>>>>> 6ee97db (feat: OAuth2):PlanItKorea/src/main/java/org/koreait/planitkorea/config/WebSecurityConfig.java
+=======
+=======
+
+>>>>>>> 1d9962e (20250131 pyj password)
+>>>>>>> be57e07 (feat: 비밀번호 찾기, 이메일 전송 로직 추가):PlanItKorea/src/main/java/org/koreait/planitkorea/config/WebSecurityConfig.java
                         )
                         .permitAll()
                         .anyRequest().authenticated())
