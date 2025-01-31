@@ -12,4 +12,5 @@ public class ApiMappingPattern {
     public static final String WISHLIST = "api/v1/wishlist";
   
     public static final String USER = "api/v1/users";
+    public static final String MAIL = "api/v1/auth/users/mails";
 }

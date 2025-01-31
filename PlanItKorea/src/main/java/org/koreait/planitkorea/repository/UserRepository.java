@@ -15,4 +15,6 @@ public interface UserRepository  extends JpaRepository<User, Long> {
     User findBySnsIdAndJoinPath(String snsId, String registration);
 
     Optional<User> findByUserName(String userName);
+
+    Optional<User> findByUserIdAndUserName(String userId, String userName);
 }
