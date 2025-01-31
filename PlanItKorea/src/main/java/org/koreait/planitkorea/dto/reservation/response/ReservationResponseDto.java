@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.koreait.planitkorea.entity.Reservation;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -17,8 +17,8 @@ public class ReservationResponseDto {
     private Long subProductId;
     private Long person;
     private String totalPrice;
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private int reservationStatus;
 
     public ReservationResponseDto(Reservation reservation) {
