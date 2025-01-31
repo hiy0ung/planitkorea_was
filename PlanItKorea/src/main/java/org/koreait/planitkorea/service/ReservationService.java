@@ -1,14 +1,14 @@
 package org.koreait.planitkorea.service;
 
-import org.koreait.planitkorea.dto.Reservation.request.CreateReservationRequestDto;
-import org.koreait.planitkorea.dto.Reservation.response.GetMyReservationResponseDto;
 import org.koreait.planitkorea.dto.ResponseDto;
-import org.koreait.planitkorea.entity.Reservation;
+import org.koreait.planitkorea.dto.reservation.request.CreateReservationRequestDto;
+import org.koreait.planitkorea.dto.reservation.response.GetMyReservationResponseDto;
+import org.koreait.planitkorea.dto.reservation.response.ReservationResponseDto;
 
 import java.util.List;
 
 public interface ReservationService {
-    ResponseDto<Reservation> createReservation(Long userId, CreateReservationRequestDto dto);
+    ResponseDto<ReservationResponseDto> createReservation(Long userId, CreateReservationRequestDto dto);
 
     ResponseDto<List<GetMyReservationResponseDto>> getMyReservation(Long userId);
 

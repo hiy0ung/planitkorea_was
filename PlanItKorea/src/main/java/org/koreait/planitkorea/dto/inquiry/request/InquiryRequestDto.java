@@ -1,4 +1,4 @@
-package org.koreait.planitkorea.dto.Inquiry.request;
+package org.koreait.planitkorea.dto.inquiry.request;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

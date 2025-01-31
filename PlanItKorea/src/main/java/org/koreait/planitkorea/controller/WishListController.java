@@ -3,7 +3,7 @@ package org.koreait.planitkorea.controller;
 import lombok.RequiredArgsConstructor;
 import org.koreait.planitkorea.common.constant.ApiMappingPattern;
 import org.koreait.planitkorea.dto.ResponseDto;
-import org.koreait.planitkorea.dto.WishList.response.WishListResponseDto;
+import org.koreait.planitkorea.dto.wishList.response.WishListResponseDto;
 import org.koreait.planitkorea.service.WishListService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

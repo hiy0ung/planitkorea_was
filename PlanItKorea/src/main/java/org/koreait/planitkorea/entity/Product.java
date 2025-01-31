@@ -1,10 +1,10 @@
 package org.koreait.planitkorea.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Products")
@@ -28,4 +28,13 @@ public class Product {
 
     @Column(name = "product_description")
     private String productDescription;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<SubProduct> subProducts;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ProductImage> productImages = new ArrayList<>();
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<ProductCity> productCities;
 }

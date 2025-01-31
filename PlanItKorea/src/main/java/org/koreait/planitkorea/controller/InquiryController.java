@@ -1,11 +1,10 @@
 package org.koreait.planitkorea.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.koreait.planitkorea.common.constant.ApiMappingPattern;
-import org.koreait.planitkorea.dto.Inquiry.request.InquiryRequestDto;
-import org.koreait.planitkorea.dto.Inquiry.response.InquiryAllGetResponseDto;
-import org.koreait.planitkorea.dto.Inquiry.response.InquiryResponseDto;
+import org.koreait.planitkorea.dto.inquiry.request.InquiryRequestDto;
+import org.koreait.planitkorea.dto.inquiry.response.InquiryAllGetResponseDto;
+import org.koreait.planitkorea.dto.inquiry.response.InquiryResponseDto;
 import org.koreait.planitkorea.dto.ResponseDto;
 import org.koreait.planitkorea.service.InquiryService;
 import org.springframework.http.HttpStatus;

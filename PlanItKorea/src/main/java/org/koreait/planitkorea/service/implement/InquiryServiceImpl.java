@@ -2,9 +2,9 @@ package org.koreait.planitkorea.service.implement;
 
 import lombok.RequiredArgsConstructor;
 import org.koreait.planitkorea.common.constant.ResponseMessage;
-import org.koreait.planitkorea.dto.Inquiry.request.InquiryRequestDto;
-import org.koreait.planitkorea.dto.Inquiry.response.InquiryAllGetResponseDto;
-import org.koreait.planitkorea.dto.Inquiry.response.InquiryResponseDto;
+import org.koreait.planitkorea.dto.inquiry.request.InquiryRequestDto;
+import org.koreait.planitkorea.dto.inquiry.response.InquiryAllGetResponseDto;
+import org.koreait.planitkorea.dto.inquiry.response.InquiryResponseDto;
 import org.koreait.planitkorea.dto.ResponseDto;
 import org.koreait.planitkorea.entity.Inquiry;
 import org.koreait.planitkorea.entity.User;

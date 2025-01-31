@@ -2,7 +2,7 @@ package org.koreait.planitkorea.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.koreait.planitkorea.common.constant.ApiMappingPattern;
-import org.koreait.planitkorea.dto.Board.Response.BoardResponseDto;
+import org.koreait.planitkorea.dto.board.Response.BoardResponseDto;
 import org.koreait.planitkorea.dto.ResponseDto;
 import org.koreait.planitkorea.entity.BoardType;
 import org.koreait.planitkorea.service.BoardService;

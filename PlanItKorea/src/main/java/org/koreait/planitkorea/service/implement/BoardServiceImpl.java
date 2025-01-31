@@ -2,7 +2,7 @@ package org.koreait.planitkorea.service.implement;
 
 import lombok.RequiredArgsConstructor;
 import org.koreait.planitkorea.common.constant.ResponseMessage;
-import org.koreait.planitkorea.dto.Board.Response.BoardResponseDto;
+import org.koreait.planitkorea.dto.board.Response.BoardResponseDto;
 import org.koreait.planitkorea.dto.ResponseDto;
 import org.koreait.planitkorea.entity.Board;
 import org.koreait.planitkorea.entity.BoardType;

@@ -1,4 +1,4 @@
-package org.koreait.planitkorea.dto.Inquiry.response;
+package org.koreait.planitkorea.dto.inquiry.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,18 +9,14 @@ import org.koreait.planitkorea.entity.InquiryCategory;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class InquiryResponseDto {
+public class InquiryAllGetResponseDto {
     private Long inquiryId;
     private String inquiryTitle;
     private InquiryCategory inquiryCategory;
-    private String inquiryContent;
-    private String inquiryImage;
 
-    public InquiryResponseDto(Inquiry inquiry) {
+    public InquiryAllGetResponseDto(Inquiry inquiry) {
         this.inquiryId = inquiry.getId();
         this.inquiryTitle = inquiry.getInquiryTitle();
         this.inquiryCategory = inquiry.getInquiryCategory();
-        this.inquiryContent = inquiry.getInquiryContent();
-        this.inquiryImage = inquiry.getInquiryImage();
     }
 }

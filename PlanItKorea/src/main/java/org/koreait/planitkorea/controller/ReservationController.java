@@ -2,10 +2,10 @@ package org.koreait.planitkorea.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.koreait.planitkorea.common.constant.ApiMappingPattern;
-import org.koreait.planitkorea.dto.Reservation.request.CreateReservationRequestDto;
-import org.koreait.planitkorea.dto.Reservation.response.GetMyReservationResponseDto;
 import org.koreait.planitkorea.dto.ResponseDto;
-import org.koreait.planitkorea.entity.Reservation;
+import org.koreait.planitkorea.dto.reservation.request.CreateReservationRequestDto;
+import org.koreait.planitkorea.dto.reservation.response.GetMyReservationResponseDto;
+import org.koreait.planitkorea.dto.reservation.response.ReservationResponseDto;
 import org.koreait.planitkorea.service.ReservationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,11 +26,11 @@ public class ReservationController {
 
     // 예약 등록
     @PostMapping(POST_RESERVATION)
-    public ResponseEntity<ResponseDto<Reservation>> createReservation (
+    public ResponseEntity<ResponseDto<ReservationResponseDto>> createReservation (
             @AuthenticationPrincipal Long userId,
             @RequestBody CreateReservationRequestDto dto
     ) {
-        ResponseDto<Reservation> response = reservationService.createReservation(userId, dto);
+        ResponseDto<ReservationResponseDto> response = reservationService.createReservation(userId, dto);
         HttpStatus status = response.isResult() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
         return ResponseEntity.status(status).body(response);
     }

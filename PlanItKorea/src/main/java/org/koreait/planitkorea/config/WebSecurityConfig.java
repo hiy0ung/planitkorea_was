@@ -58,7 +58,8 @@ public class WebSecurityConfig {
                         .requestMatchers(
                                 new AntPathRequestMatcher("/api/v1/auth/**"),
                                 new AntPathRequestMatcher("/api/v1/boards/**"),
-                                new AntPathRequestMatcher("/image/**")
+                                new AntPathRequestMatcher("/image/**"),
+                                new AntPathRequestMatcher("/api/v1/products/**")
                         )
                         .permitAll()
                         .anyRequest().authenticated())

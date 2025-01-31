@@ -1,7 +1,7 @@
 package org.koreait.planitkorea.service;
 
 import org.koreait.planitkorea.dto.ResponseDto;
-import org.koreait.planitkorea.dto.WishList.response.WishListResponseDto;
+import org.koreait.planitkorea.dto.wishList.response.WishListResponseDto;
 
 import java.util.List;
 

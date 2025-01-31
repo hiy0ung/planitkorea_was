@@ -1,4 +1,4 @@
-package org.koreait.planitkorea.dto.Board.Response;
+package org.koreait.planitkorea.dto.board.Response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
