@@ -20,7 +20,4 @@ public class ProductResponseDto {
     private String subPrice;
     private int subPerson;
     private String subProductImage;
-    private Long reservationId;
-    private LocalDate startDate;
-    private LocalDate endDate;
 }

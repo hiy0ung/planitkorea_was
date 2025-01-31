@@ -18,6 +18,7 @@ import org.koreait.planitkorea.repository.UserRepository;
 import org.koreait.planitkorea.service.ReservationService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;

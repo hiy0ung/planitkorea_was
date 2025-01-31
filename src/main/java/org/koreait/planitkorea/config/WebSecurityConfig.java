@@ -86,6 +86,7 @@ public class WebSecurityConfig {
 =======
                                 new AntPathRequestMatcher("/api/v1/boards/**"),
                                 new AntPathRequestMatcher("/image/**"),
+<<<<<<< HEAD
                                 new AntPathRequestMatcher("/api/v1/products/**")
 >>>>>>> 3c1f589 (20250131 shy)
 <<<<<<< HEAD:src/main/java/org/koreait/planitkorea/config/WebSecurityConfig.java
@@ -94,6 +95,9 @@ public class WebSecurityConfig {
 =======
                                 new AntPathRequestMatcher("/api/v1/boards/**"),
                                 new AntPathRequestMatcher("/image/**"),
+=======
+                                new AntPathRequestMatcher("/api/v1/products/**"),
+>>>>>>> d5b8dc4 (20250131 shy)
                                 new AntPathRequestMatcher("/oauth2/callback/*")
 <<<<<<< HEAD
 >>>>>>> bfdd46a (20250126 OAuth2)
