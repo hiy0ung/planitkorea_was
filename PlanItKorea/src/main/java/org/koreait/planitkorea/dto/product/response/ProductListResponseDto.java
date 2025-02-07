@@ -4,20 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductResponseDto {
+public class ProductListResponseDto {
     private Long productId;
+    private String productCategory;
     private String productName;
     private String productPrice;
+    private String productDescription;
     private String productAddress;
     private String productImage;
-    private Long subProductId;
-    private String subName;
-    private String subPrice;
-    private int subPerson;
-    private String subProductImage;
+    private Long facilityId;
 }

@@ -17,17 +17,20 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "product_name")
+    @Column(name = "product_name", nullable = false)
     private String productName;
 
-    @Column(name = "product_price")
+    @Column(name = "product_price", nullable = false)
     private String productPrice;
 
-    @Column(name = "productAddress")
+    @Column(name = "productAddress", nullable = false)
     private String productAddress;
 
-    @Column(name = "product_description")
+    @Column(name = "product_description", nullable = false)
     private String productDescription;
+
+    @Column(name = "product_category", nullable = false)
+    private String productCategory;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<SubProduct> subProducts;
@@ -37,4 +40,12 @@ public class Product {
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<ProductCity> productCities;
+
+    @ManyToMany
+    @JoinTable(
+            name = "Product_Facilities",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "facility_id")
+    )
+    private List<Facility> facilities = new ArrayList<>();
 }
