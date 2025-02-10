@@ -4,21 +4,12 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.koreait.planitkorea.common.constant.ApiMappingPattern;
 import org.koreait.planitkorea.dto.ResponseDto;
-import org.koreait.planitkorea.dto.auth.request.LoginRequestDto;
-import org.koreait.planitkorea.dto.auth.request.SignUpRequestDto;
-import org.koreait.planitkorea.dto.auth.request.UserEmailDuplicationRequestDto;
-import org.koreait.planitkorea.dto.auth.request.UserIdDuplicationRequestDto;
-import org.koreait.planitkorea.dto.auth.response.LoginResponseDto;
-import org.koreait.planitkorea.dto.auth.response.SignUpResponseDto;
-import org.koreait.planitkorea.dto.auth.response.UserEmailDuplicationResponseDto;
-import org.koreait.planitkorea.dto.auth.response.UserIdDuplicationResponseDto;
+import org.koreait.planitkorea.dto.auth.request.*;
+import org.koreait.planitkorea.dto.auth.response.*;
 import org.koreait.planitkorea.service.AuthService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(ApiMappingPattern.AUTH)
@@ -31,6 +22,7 @@ public class AuthController {
     public static final String LOGIN = "/login";
     public static final String USER_ID_DUPLICATION_CHECK = "/signUp/search/userId";
     public static final String USER_EMAIL_DUPLICATION_CHECK = "/signUp/search/userEmail";
+    public static final String FIND_USER_ID = "users/user-id";
 
     @PostMapping(SIGN_UP)
     public ResponseEntity<ResponseDto<SignUpResponseDto>> signUp(@Valid @RequestBody SignUpRequestDto dto) {
@@ -58,6 +50,17 @@ public class AuthController {
     @PostMapping(USER_EMAIL_DUPLICATION_CHECK)
     public ResponseEntity<ResponseDto<UserEmailDuplicationResponseDto>> userIdDuplicationCheck(@Valid @RequestBody UserEmailDuplicationRequestDto dto) {
         ResponseDto<UserEmailDuplicationResponseDto> response = authService.userEmailDuplicationCheck(dto);
+        HttpStatus status = response.isResult() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
+        return ResponseEntity.status(status).body(response);
+    }
+
+    // 아이디 찾기
+    @GetMapping(FIND_USER_ID)
+    public ResponseEntity<ResponseDto<String>> findUserId(
+            @Valid @RequestParam String userName,
+            @Valid @RequestParam String userPhone
+    ) {
+        ResponseDto<String> response = authService.findUserId(userName, userPhone);
         HttpStatus status = response.isResult() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
         return ResponseEntity.status(status).body(response);
     }
