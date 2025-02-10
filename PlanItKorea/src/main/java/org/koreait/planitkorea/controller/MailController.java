@@ -17,7 +17,7 @@ public class MailController {
 
     private final MailService mailService;
 
-    private static final String SEND = "/find-pw";
+    private static final String SEND = "/password";
     private static final String VERIFY = "/verification";
 
     @PostMapping(SEND)

@@ -4,14 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.koreait.planitkorea.common.constant.ResponseMessage;
 import org.koreait.planitkorea.dto.ResponseDto;
-import org.koreait.planitkorea.dto.auth.request.LoginRequestDto;
-import org.koreait.planitkorea.dto.auth.request.SignUpRequestDto;
-import org.koreait.planitkorea.dto.auth.request.UserEmailDuplicationRequestDto;
-import org.koreait.planitkorea.dto.auth.request.UserIdDuplicationRequestDto;
-import org.koreait.planitkorea.dto.auth.response.LoginResponseDto;
-import org.koreait.planitkorea.dto.auth.response.SignUpResponseDto;
-import org.koreait.planitkorea.dto.auth.response.UserEmailDuplicationResponseDto;
-import org.koreait.planitkorea.dto.auth.response.UserIdDuplicationResponseDto;
+import org.koreait.planitkorea.dto.auth.request.*;
+import org.koreait.planitkorea.dto.auth.response.*;
 import org.koreait.planitkorea.entity.User;
 import org.koreait.planitkorea.provider.JwtProvider;
 import org.koreait.planitkorea.repository.UserRepository;
@@ -21,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -180,4 +175,25 @@ public class AuthServiceImpl implements AuthService {
         data = new UserEmailDuplicationResponseDto(true);
         return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
     }
+
+    @Override
+    public ResponseDto<String> findUserId(String userName, String userPhone) {
+        String data = null;
+
+        try {
+            Optional<User> optionalUser = userRepository.findByUserNameAndUserPhone(userName, userPhone);
+
+            if(optionalUser.isEmpty()) {
+                return ResponseDto.setFailed(ResponseMessage.NOT_EXIST_USER);
+            }
+            User user = optionalUser.get();
+
+            data = user.getUserId();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseDto.setFailed(ResponseMessage.NOT_EXIST_USER);
+        }
+        return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
+    }
+
 }
