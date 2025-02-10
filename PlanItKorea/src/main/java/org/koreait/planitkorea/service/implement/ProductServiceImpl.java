@@ -3,10 +3,7 @@ package org.koreait.planitkorea.service.implement;
 import lombok.RequiredArgsConstructor;
 import org.koreait.planitkorea.common.constant.ResponseMessage;
 import org.koreait.planitkorea.dto.ResponseDto;
-import org.koreait.planitkorea.dto.product.response.FacilityResponseDto;
-import org.koreait.planitkorea.dto.product.response.ProductDetailResponseDto;
-import org.koreait.planitkorea.dto.product.response.ProductListResponseDto;
-import org.koreait.planitkorea.dto.product.response.SubProductResponseDto;
+import org.koreait.planitkorea.dto.product.response.*;
 import org.koreait.planitkorea.repository.ProductRepository;
 import org.koreait.planitkorea.service.ProductService;
 import org.springframework.stereotype.Service;
@@ -82,6 +79,33 @@ public class ProductServiceImpl implements ProductService {
                             .distinct()
                             .collect(Collectors.toList())
             );
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
+        }
+        return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
+    }
+
+    @Override
+    public ResponseDto<List<Top5ResponseDto>> getTop5Product() {
+        List<Top5ResponseDto> data = null;
+
+        try {
+
+            List<Object[]> results = productRepository.findTop5Products();
+
+            data = results.stream()
+                    .map(result -> new Top5ResponseDto(
+                            (Long) result[0],
+                            (String) result[1],
+                            (String) result[2],
+                            (String) result[3],
+                            (String) result[4],
+                            (String) result[5],
+                            (String) result[6]
+
+                    )).collect(Collectors.toList());
+
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);

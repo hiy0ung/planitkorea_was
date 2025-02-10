@@ -34,6 +34,8 @@ public class AuthServiceImpl implements AuthService {
         String userBirthDate = dto.getUserBirthDate();
         String userPhone = dto.getUserPhone();
         String userEmail = dto.getUserEmail();
+        String joinPath = dto.getJoinPath();
+        String snsId = dto.getSnsId();
 
         SignUpResponseDto data = null;
 
@@ -73,6 +75,10 @@ public class AuthServiceImpl implements AuthService {
             return ResponseDto.setFailed(ResponseMessage.INVALID_EMAIL);
         }
 
+        if (joinPath == null || joinPath.isEmpty()) {
+            return ResponseDto.setFailed(ResponseMessage.VALIDATION_FAIL);
+        }
+
         try {
             String encodePassword = bCryptpasswordEncoder.encode(userPassword);
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
@@ -85,6 +91,8 @@ public class AuthServiceImpl implements AuthService {
                     .userBirthDate(birthDate)
                     .userPhone(userPhone)
                     .userEmail(userEmail)
+                    .joinPath(joinPath)
+                    .snsId(snsId)
                     .build();
 
             userRepository.save(user);

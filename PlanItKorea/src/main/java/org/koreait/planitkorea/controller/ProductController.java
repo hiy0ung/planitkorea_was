@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.koreait.planitkorea.dto.product.response.ProductDetailResponseDto;
 import org.koreait.planitkorea.dto.product.response.ProductListResponseDto;
 import org.koreait.planitkorea.dto.ResponseDto;
+import org.koreait.planitkorea.dto.product.response.Top5ResponseDto;
 import org.koreait.planitkorea.service.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,8 @@ import java.util.List;
 public class ProductController {
 
     private final ProductService productService;
+
+    public static final String TOP5 = "top5";
 
     @GetMapping("/search")
     public ResponseEntity<ResponseDto<List<ProductListResponseDto>>> searchAllProduct(
@@ -34,6 +37,13 @@ public class ProductController {
     @GetMapping("/{id}")
     public ResponseEntity<ResponseDto<ProductDetailResponseDto>> getProductDetail(@PathVariable Long id) {
         ResponseDto<ProductDetailResponseDto> response = productService.getProductDetail(id);
+        HttpStatus status = response.isResult() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
+        return ResponseEntity.status(status).body(response);
+    }
+
+    @GetMapping(TOP5)
+    public ResponseEntity<ResponseDto<List<Top5ResponseDto>>> getTop5Product() {
+        ResponseDto<List<Top5ResponseDto>> response = productService.getTop5Product();
         HttpStatus status = response.isResult() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
         return ResponseEntity.status(status).body(response);
     }

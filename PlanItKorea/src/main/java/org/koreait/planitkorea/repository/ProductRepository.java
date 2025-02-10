@@ -99,4 +99,23 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
         LEFT JOIN Facilities f ON f.id = pf.facility_id;
 """, nativeQuery = true)
     List<Object[]> findProductDetailById(@Param("productId") Long productId);
+
+    @Query(value = "SELECT p.id AS product_id, " +
+            "p.product_name AS product_name, " +
+            "accommodation.accommodation_name AS accommodation_name, " +
+            "city.city_name AS city_name, " +
+            "p.product_address AS product_address, " +
+            "p.product_price AS product_price, " +
+            "pi.product_image AS product_image " +
+            "FROM Wish_List wl " +
+            "JOIN Products p ON wl.product_id = p.id " +
+            "JOIN Product_Accommodation_Categories pac ON pac.product_id = p.id " +
+            "JOIN Accommodation_Categories accommodation ON pac.accommodation_id = accommodation.id " +
+            "JOIN Product_Cities pc ON pc.product_id = p.id " +
+            "JOIN cities city ON pc.city_id = city.id " +
+            "JOIN Product_Images pi ON pi.product_id = p.id " +
+            "GROUP BY p.id, p.product_name, accommodation.accommodation_name, city.city_name, p.product_address, p.product_price, pi.product_image " +
+            "ORDER BY COUNT(wl.product_id) DESC " +
+            "LIMIT 5", nativeQuery = true)
+    List<Object[]> findTop5Products();
 }
