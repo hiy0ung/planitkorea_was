@@ -14,4 +14,6 @@ public interface ProductService {
     ResponseDto<ProductDetailResponseDto> getProductDetail(Long id);
 
     ResponseDto<List<Top5ResponseDto>> getTop5Product();
+
+    ResponseDto<List<ProductListResponseDto>> getProductByCity(String popularRegion);
 }

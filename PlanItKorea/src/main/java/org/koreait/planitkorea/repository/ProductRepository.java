@@ -48,10 +48,18 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
            ar.product_address,
            ar.product_description,
            ar.product_image,
-           f.id AS facilityId
-       FROM Available_Rooms ar
-       LEFT JOIN Product_Facilities pf ON pf.product_id = ar.product_id
-       LEFT JOIN Facilities f ON f.id = pf.facility_id;
+           GROUP_CONCAT(f.id) AS facilityIds
+        FROM Available_Rooms ar
+        LEFT JOIN Product_Facilities pf ON pf.product_id = ar.product_id
+        LEFT JOIN Facilities f ON f.id = pf.facility_id
+        GROUP BY 
+            ar.product_id, 
+            ar.product_category, 
+            ar.product_name, 
+            ar.product_price, 
+            ar.product_address, 
+            ar.product_description, 
+            ar.product_image;
 """, nativeQuery = true)
     List<Object[]> findAllProductsByCityAndDate(@Param("cityName") String cityName,
                                                 @Param("person") int person,

@@ -4,11 +4,14 @@ import lombok.RequiredArgsConstructor;
 import org.koreait.planitkorea.common.constant.ResponseMessage;
 import org.koreait.planitkorea.dto.ResponseDto;
 import org.koreait.planitkorea.dto.product.response.*;
+import org.koreait.planitkorea.entity.Facility;
+import org.koreait.planitkorea.entity.Product;
 import org.koreait.planitkorea.repository.ProductRepository;
 import org.koreait.planitkorea.service.ProductService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,7 +36,9 @@ public class ProductServiceImpl implements ProductService {
                             (String) result[4],
                             (String) result[5],
                             (String) result[6],
-                            (Long) result[7]
+                            Arrays.stream(((String) result[7]).split(","))
+                                    .map(Long::valueOf)
+                                    .collect(Collectors.toList())
                     )).collect(Collectors.toList());
         } catch (Exception e) {
             e.printStackTrace();
@@ -104,6 +109,35 @@ public class ProductServiceImpl implements ProductService {
                             (String) result[5],
                             (String) result[6]
 
+                    )).collect(Collectors.toList());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
+        }
+        return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
+    }
+
+    @Override
+    public ResponseDto<List<ProductListResponseDto>> getProductByCity(String popularRegion) {
+        List<ProductListResponseDto> data = null;
+
+        try {
+            List<Product> products = productRepository.findAll();
+            data = products.stream()
+                    .filter(product -> product.getProductCities().stream()
+                            .anyMatch(productCity -> productCity.getCity().getCityName().equals(popularRegion)))
+                    .map(product -> new ProductListResponseDto(
+                            product.getId(),
+                            product.getProductCategory(),
+                            product.getProductName(),
+                            product.getProductPrice(),
+                            product.getProductDescription(),
+                            product.getProductAddress(),
+                            product.getProductImages().get(0).getProductImage(),
+                            product.getFacilities().stream()
+                                    .map(Facility::getId)
+                                    .collect(Collectors.toList())
                     )).collect(Collectors.toList());
 
         } catch (Exception e) {
