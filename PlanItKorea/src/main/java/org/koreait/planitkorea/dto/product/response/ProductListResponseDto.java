@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,5 +17,5 @@ public class ProductListResponseDto {
     private String productDescription;
     private String productAddress;
     private String productImage;
-    private Long facilityId;
+    private List<Long> facilityIds;
 }

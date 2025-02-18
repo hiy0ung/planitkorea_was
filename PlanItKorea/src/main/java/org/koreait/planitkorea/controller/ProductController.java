@@ -47,4 +47,11 @@ public class ProductController {
         HttpStatus status = response.isResult() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
         return ResponseEntity.status(status).body(response);
     }
+
+    @GetMapping
+    public ResponseEntity<ResponseDto<List<ProductListResponseDto>>> getProductByCity(@RequestParam String popularRegion) {
+        ResponseDto<List<ProductListResponseDto>> response = productService.getProductByCity(popularRegion);
+        HttpStatus status = response.isResult() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
+        return ResponseEntity.status(status).body(response);
+    }
 }
