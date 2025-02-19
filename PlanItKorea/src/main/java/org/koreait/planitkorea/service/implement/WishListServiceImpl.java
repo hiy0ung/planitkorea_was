@@ -62,10 +62,11 @@ public class WishListServiceImpl implements WishListService {
             data = convertDto.stream().map(dto -> new WishListResponseDto(
                     (Long) dto[0],
                     (Long) dto[1],
-                    (String) dto[2],
+                    (Long) dto[2],
                     (String) dto[3],
                     (String) dto[4],
-                    (String) dto[5]
+                    (String) dto[5],
+                    (String) dto[6]
             )).collect(Collectors.toList());
 
         } catch (Exception e) {

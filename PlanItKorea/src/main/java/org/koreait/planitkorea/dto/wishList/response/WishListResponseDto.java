@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class WishListResponseDto {
+    private Long wishListId;
     private Long userId;
     private Long productId;
     private String productName;

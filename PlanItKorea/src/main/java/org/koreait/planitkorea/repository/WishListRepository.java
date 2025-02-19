@@ -16,6 +16,7 @@ public interface WishListRepository extends JpaRepository<WishList, Long> {
 
     @Query(value = """
         select
+            w.id as wish_list_id,
             w.user_id,
             w.product_id,
             p.product_name,
