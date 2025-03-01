@@ -11,7 +11,7 @@ import java.util.List;
 public interface ProductService {
     ResponseDto<List<ProductListResponseDto>> searchAllProduct(String cityName, int person, LocalDate startDate, LocalDate endDate);
 
-    ResponseDto<ProductDetailResponseDto> getProductDetail(Long id);
+    ResponseDto<ProductDetailResponseDto> getProductDetail(Long productId);
 
     ResponseDto<List<Top5ResponseDto>> getTop5Product();
 
