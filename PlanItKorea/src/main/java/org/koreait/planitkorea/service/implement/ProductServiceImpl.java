@@ -48,9 +48,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ResponseDto<ProductDetailResponseDto> getProductDetail(Long id) {
+    public ResponseDto<ProductDetailResponseDto> getProductDetail(Long productId) {
         ProductDetailResponseDto data = null;
-        Long productId = id;
 
         try {
             List<Object[]> result = productRepository.findProductDetailById(productId);

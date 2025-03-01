@@ -34,9 +34,9 @@ public class ProductController {
         return ResponseEntity.status(status).body(response);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<ResponseDto<ProductDetailResponseDto>> getProductDetail(@PathVariable Long id) {
-        ResponseDto<ProductDetailResponseDto> response = productService.getProductDetail(id);
+    @GetMapping("/{productId}")
+    public ResponseEntity<ResponseDto<ProductDetailResponseDto>> getProductDetail(@PathVariable Long productId) {
+        ResponseDto<ProductDetailResponseDto> response = productService.getProductDetail(productId);
         HttpStatus status = response.isResult() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
         return ResponseEntity.status(status).body(response);
     }
