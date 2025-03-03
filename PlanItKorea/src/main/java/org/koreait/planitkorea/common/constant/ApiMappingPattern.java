@@ -21,5 +21,10 @@ public class ApiMappingPattern {
 >>>>>>> 9c8cec8 (20250116 pyj)
 =======
     public static final String MAIL = "api/v1/auth/users/mails";
+<<<<<<< HEAD
 >>>>>>> 1d9962e (20250131 pyj password)
+=======
+    public static final String KAKAO_PAY = "api/v1/kakaoPay";
+
+>>>>>>> bec8fdb (feat: kakaopay 결제 로직 추가)
 }

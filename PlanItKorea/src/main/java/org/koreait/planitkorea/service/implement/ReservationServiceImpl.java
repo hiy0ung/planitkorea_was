@@ -46,8 +46,8 @@ public class ReservationServiceImpl implements ReservationService {
 
         Long person = dto.getPerson();
         String totalPrice = dto.getTotalPrice();
-        LocalDateTime startDate = dto.getStartDate();
-        LocalDateTime endDate = dto.getEndDate();
+        LocalDate startDate = dto.getStartDate();
+        LocalDate endDate = dto.getEndDate();
 
         try {
             Reservation reservation = Reservation.builder()
@@ -78,6 +78,10 @@ public class ReservationServiceImpl implements ReservationService {
         try {
             List<Object[]> results = reservationRepository.findAllByUserId(userId);
 
+            if(results.isEmpty()) {
+                return ResponseDto.setSuccess(ResponseMessage.SUCCESS, null);
+            }
+
             List<GetMyReservationResponseDto> data = results.stream()
                     .map(result -> {
                         Reservation reservation = (Reservation) result[0];
@@ -97,7 +101,7 @@ public class ReservationServiceImpl implements ReservationService {
                                 productName
                         );
                     }).collect(Collectors.toList());
-            return ResponseDto.setSuccess(ResponseMessage.SUCCESS, null);
+            return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
 
         } catch (Exception e) {
             e.printStackTrace();
