@@ -95,7 +95,6 @@ public class ProductServiceImpl implements ProductService {
         List<Top5ResponseDto> data = null;
 
         try {
-
             List<Object[]> results = productRepository.findTop5Products();
 
             data = results.stream()
@@ -107,7 +106,6 @@ public class ProductServiceImpl implements ProductService {
                             (String) result[4],
                             (String) result[5],
                             (String) result[6]
-
                     )).collect(Collectors.toList());
 
         } catch (Exception e) {
@@ -116,6 +114,7 @@ public class ProductServiceImpl implements ProductService {
         }
         return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
     }
+
 
     @Override
     public ResponseDto<List<ProductListResponseDto>> getProductByCity(String popularRegion) {
