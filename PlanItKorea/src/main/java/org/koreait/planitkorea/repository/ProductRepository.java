@@ -42,4 +42,72 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
                                                 @Param("person") int person,
                                                 @Param("startDate") LocalDate startDate,
                                                 @Param("endDate") LocalDate endDate);
+<<<<<<< HEAD
+=======
+    // 상세 조회
+    @Query(value = """
+        WITH Available_Rooms AS (
+            SELECT
+                p.id AS product_id,
+                p.product_category,
+                p.product_name,
+                p.product_price,
+                p.product_address,
+                p.product_description,
+                pi.product_image,
+                sp.id AS sub_product_id,
+                sp.sub_name,
+                sp.sub_price,
+                sp.sub_person,
+                spi.sub_product_image
+            FROM Products p
+            INNER JOIN Product_images pi ON pi.product_id = p.id
+            INNER JOIN Sub_Products sp ON sp.main_product_id = p.id
+            INNER JOIN sub_product_images spi ON spi.sub_product_id = sp.id
+            WHERE p.id = :productId
+        )
+        SELECT
+            ar.product_id,
+            ar.product_category,
+            ar.product_name,
+            ar.product_price,
+            ar.product_address,
+            ar.product_description,
+            ar.product_image,
+            ar.sub_product_id,
+            ar.sub_name,
+            ar.sub_price,
+            ar.sub_person,
+            ar.sub_product_image,
+            f.id as facility_id,
+            f.facility_name
+        FROM Available_Rooms ar
+        LEFT JOIN Product_Facilities pf ON pf.product_id = ar.product_id
+        LEFT JOIN Facilities f ON f.id = pf.facility_id;
+""", nativeQuery = true)
+    List<Object[]> findProductDetailById(@Param("productId") Long productId);
+
+    @Query(value = """
+    SELECT
+        p.id AS product_id,
+        p.product_name AS product_name,
+        p.product_category AS accommodation_type,
+        c.city_name AS accommodation_region,
+        p.product_address AS accommodation_address, 
+        p.product_price AS accommodation_price, 
+        pi.product_image AS accommodation_image,
+        COUNT(wl.product_id) AS wishlist_count
+    FROM Products p
+    LEFT JOIN Wish_List wl ON p.id = wl.product_id
+    JOIN Product_Cities pc ON pc.product_id = p.id
+    JOIN cities c ON pc.city_id = c.id
+    LEFT JOIN Product_Images pi ON pi.product_id = p.id
+    GROUP BY p.id, p.product_name, p.product_category, c.city_name, p.product_address, p.product_price, pi.product_image
+    HAVING COUNT(wl.product_id) > 0
+    ORDER BY wishlist_count DESC
+    LIMIT 5;
+    
+""", nativeQuery = true)
+    List<Object[]> findTop5Products();
+>>>>>>> c6e5093 (feat: review 로직 추가)
 }

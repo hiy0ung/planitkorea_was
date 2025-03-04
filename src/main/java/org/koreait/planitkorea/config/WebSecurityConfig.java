@@ -97,6 +97,7 @@ public class WebSecurityConfig {
                                 new AntPathRequestMatcher("/image/**"),
 =======
                                 new AntPathRequestMatcher("/api/v1/products/**"),
+<<<<<<< HEAD
 >>>>>>> d5b8dc4 (20250131 shy)
                                 new AntPathRequestMatcher("/oauth2/callback/*")
 <<<<<<< HEAD
@@ -107,7 +108,14 @@ public class WebSecurityConfig {
 =======
 
 >>>>>>> 1d9962e (20250131 pyj password)
+<<<<<<< HEAD:src/main/java/org/koreait/planitkorea/config/WebSecurityConfig.java
 >>>>>>> be57e07 (feat: 비밀번호 찾기, 이메일 전송 로직 추가):PlanItKorea/src/main/java/org/koreait/planitkorea/config/WebSecurityConfig.java
+=======
+=======
+                                new AntPathRequestMatcher("/oauth2/callback/*"),
+                                new AntPathRequestMatcher("/api/v1/reviews/auth/**")
+>>>>>>> 7fb65f5 (feat: review 로직 추가)
+>>>>>>> c6e5093 (feat: review 로직 추가):PlanItKorea/src/main/java/org/koreait/planitkorea/config/WebSecurityConfig.java
                         )
                         .permitAll()
                         .anyRequest().authenticated())
