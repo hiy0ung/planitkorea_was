@@ -21,7 +21,6 @@ public class ReviewController {
 
     private final ReviewService reviewService;
 
-    public static final String GET_PRODUCT_REVIEWS = "/{productId}";
     public static final String DELETE_MY_REVIEWS = "/{reviewId}";
 
     // 리뷰 등록
@@ -36,7 +35,7 @@ public class ReviewController {
     }
 
     // 상품 내 리뷰 조회
-    @GetMapping(GET_PRODUCT_REVIEWS)
+    @GetMapping("/auth/{productId}")
     public ResponseEntity<ResponseDto<List<ProductReviewResponseDto>>> getProductReviews (
             @PathVariable Long productId
     ) {
