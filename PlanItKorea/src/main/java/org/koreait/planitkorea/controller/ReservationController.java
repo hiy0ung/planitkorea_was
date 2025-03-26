@@ -5,7 +5,9 @@ import org.koreait.planitkorea.common.constant.ApiMappingPattern;
 import org.koreait.planitkorea.dto.ResponseDto;
 import org.koreait.planitkorea.dto.reservation.request.CreateReservationRequestDto;
 import org.koreait.planitkorea.dto.reservation.response.GetMyReservationResponseDto;
+import org.koreait.planitkorea.dto.reservation.response.GetOrderIdByReservationDto;
 import org.koreait.planitkorea.dto.reservation.response.ReservationResponseDto;
+import org.koreait.planitkorea.entity.Reservation;
 import org.koreait.planitkorea.service.ReservationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +25,8 @@ public class ReservationController {
 
     private static final String POST_RESERVATION = "";
     private static final String DEL_RESERVATION = "/{id}";
+    private static final String GET_ORDER_ID = "/{orderId}";
+
 
     // 예약 등록
     @PostMapping(POST_RESERVATION)
@@ -52,6 +56,14 @@ public class ReservationController {
             @PathVariable Long id
     ) {
         ResponseDto<Boolean> response = reservationService.deleteReservation(userId, id);
+        HttpStatus status = response.isResult() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
+        return ResponseEntity.status(status).body(response);
+    }
+
+    // 예약번호로 조회
+    @GetMapping(GET_ORDER_ID)
+    public ResponseEntity<ResponseDto<GetOrderIdByReservationDto>> getOrderIdReservation(@PathVariable String orderId) {
+        ResponseDto<GetOrderIdByReservationDto> response = reservationService.getOrderIdReservation(orderId);
         HttpStatus status = response.isResult() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
         return ResponseEntity.status(status).body(response);
     }

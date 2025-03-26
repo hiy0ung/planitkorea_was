@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ReservationRepository extends JpaRepository<Reservation, Long> {
@@ -24,5 +25,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
     @Transactional
     @Query("UPDATE Reservation r SET r.reservationStatus = 2 WHERE r.reservationStatus = 1 AND r.endDate < current_date")
     void updateExpiredReservations();
+
+    Optional<Reservation> findByOrderId(String orderId);
 }
 

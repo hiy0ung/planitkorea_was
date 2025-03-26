@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "Payment")
+@Table(name = "Payments")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,25 +19,21 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long reservationId;
+    @Column(name = "product_id", nullable = false)
+    private Long productId;
 
-    private Long userId;
+    @Column(name = "order_id", nullable = false)
+    private String orderId;
 
-    private PaymentMethod paymentMethod;
+    @Column(name = "payment_user_id", nullable = false)
+    private String paymentUserId;
 
-    private String totalPrice;
+    @Column(name = "created_time", nullable = false)
+    private String created_time;
 
-    private String paymentStatus;
+    @Column(name = "approved_time", nullable = false)
+    private String approved_time;
 
-    private String transactionId;
-
-    private Timestamp paymentTime;
-
-    @ManyToOne
-    @JoinColumn(name = "reservationId", insertable = false, updatable = false)
-    private Reservation reservation;
-
-    @ManyToOne
-    @JoinColumn(name = "userId", insertable = false, updatable = false)
-    private User user;
+    @Column(name = "payment_type", nullable = false)
+    private String paymentType;
 }

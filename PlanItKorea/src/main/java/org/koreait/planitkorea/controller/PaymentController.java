@@ -5,10 +5,12 @@ import org.koreait.planitkorea.common.constant.ApiMappingPattern;
 import org.koreait.planitkorea.dto.ResponseDto;
 import org.koreait.planitkorea.dto.pay.request.PaymentApproveRequestDto;
 import org.koreait.planitkorea.dto.pay.request.PaymentRequestDto;
+import org.koreait.planitkorea.dto.pay.response.ApproveResponseDto;
 import org.koreait.planitkorea.dto.pay.response.PaymentResponseDto;
 import org.koreait.planitkorea.service.KakaoPayService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -34,9 +36,9 @@ public class PaymentController {
     }
 
     // 결제 성공 시 리디렉션
-    @GetMapping(PAYMENT_SUCCESS)
-    public ResponseEntity<ResponseDto<String>> paymentSuccess(PaymentApproveRequestDto dto) {
-        ResponseDto<String> response = kakaoPayService.approvePayment(dto);
+    @PostMapping(PAYMENT_SUCCESS)
+    public ResponseEntity<ResponseDto<ApproveResponseDto>> paymentSuccess(@RequestBody PaymentApproveRequestDto dto) {
+        ResponseDto<ApproveResponseDto> response = kakaoPayService.approvePayment(dto);
         HttpStatus status = response.isResult() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
         return ResponseEntity.status(status).body(response);
     }
@@ -52,4 +54,5 @@ public class PaymentController {
     public ResponseEntity<String> paymentCancel() {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Payment Cancelled");
     }
+
 }
