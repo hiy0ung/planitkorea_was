@@ -13,4 +13,6 @@ public class ApiMappingPattern {
   
     public static final String USER = "api/v1/users";
     public static final String MAIL = "api/v1/auth/users/mails";
+    public static final String KAKAO_PAY = "api/v1/kakaoPay";
+
 }

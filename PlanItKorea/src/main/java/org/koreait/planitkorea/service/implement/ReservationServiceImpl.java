@@ -6,6 +6,7 @@ import org.koreait.planitkorea.common.constant.ResponseMessage;
 import org.koreait.planitkorea.dto.ResponseDto;
 import org.koreait.planitkorea.dto.reservation.request.CreateReservationRequestDto;
 import org.koreait.planitkorea.dto.reservation.response.GetMyReservationResponseDto;
+import org.koreait.planitkorea.dto.reservation.response.GetOrderIdByReservationDto;
 import org.koreait.planitkorea.dto.reservation.response.ReservationResponseDto;
 import org.koreait.planitkorea.entity.Product;
 import org.koreait.planitkorea.entity.Reservation;
@@ -16,6 +17,7 @@ import org.koreait.planitkorea.repository.ReservationRepository;
 import org.koreait.planitkorea.repository.SubProductRepository;
 import org.koreait.planitkorea.repository.UserRepository;
 import org.koreait.planitkorea.service.ReservationService;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -44,21 +46,20 @@ public class ReservationServiceImpl implements ReservationService {
         SubProduct subProduct = subProductRepository.findById(dto.getSubProductId())
                 .orElseThrow(() -> new IllegalArgumentException(ResponseMessage.NOT_EXIST_DATA));
 
-        Long person = dto.getPerson();
-        String totalPrice = dto.getTotalPrice();
-        LocalDateTime startDate = dto.getStartDate();
-        LocalDateTime endDate = dto.getEndDate();
+        if (dto.getPerson() == null || dto.getTotalPrice() == null || dto.getStartDate() == null || dto.getEndDate() == null) {
+            throw new IllegalArgumentException(ResponseMessage.VALIDATION_FAIL);
+        }
 
         try {
             Reservation reservation = Reservation.builder()
-                    .id(null)
                     .user(user)
                     .product(product)
                     .subProduct(subProduct)
-                    .person(person)
-                    .totalPrice(totalPrice)
-                    .startDate(LocalDate.from(startDate))
-                    .endDate(LocalDate.from(endDate))
+                    .person(dto.getPerson())
+                    .totalPrice(dto.getTotalPrice())
+                    .startDate(dto.getStartDate())
+                    .endDate(dto.getEndDate())
+                    .orderId(dto.getOrderId())
                     .reservationStatus(1)
                     .build();
 
@@ -66,17 +67,22 @@ public class ReservationServiceImpl implements ReservationService {
             data = new ReservationResponseDto(reservation);
             return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
 
+        } catch (DataIntegrityViolationException e) {
+            return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
         } catch (Exception e) {
-            e.printStackTrace();
             return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
         }
-
     }
+
 
     @Override
     public ResponseDto<List<GetMyReservationResponseDto>> getMyReservation(Long userId) {
         try {
             List<Object[]> results = reservationRepository.findAllByUserId(userId);
+
+            if(results.isEmpty()) {
+                return ResponseDto.setSuccess(ResponseMessage.SUCCESS, null);
+            }
 
             List<GetMyReservationResponseDto> data = results.stream()
                     .map(result -> {
@@ -92,12 +98,13 @@ public class ReservationServiceImpl implements ReservationService {
                                 reservation.getTotalPrice(),
                                 reservation.getStartDate().atStartOfDay(),
                                 reservation.getEndDate().atStartOfDay(),
+                                reservation.getOrderId(),
                                 reservation.getReservationStatus(),
                                 productImage,
                                 productName
                         );
                     }).collect(Collectors.toList());
-            return ResponseDto.setSuccess(ResponseMessage.SUCCESS, null);
+            return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -133,22 +140,25 @@ public class ReservationServiceImpl implements ReservationService {
         // 현재시간이 endDate 뵤댜 지난 상태면 update 요청?
     }
 
+    @Override
+    public ResponseDto<GetOrderIdByReservationDto> getOrderIdReservation(String orderId) {
+        try {
+            Optional<Reservation> optionalReservation = reservationRepository.findByOrderId(orderId);
 
+            if (optionalReservation.isEmpty()) {
+                return ResponseDto.setFailed(ResponseMessage.NOT_EXIST_DATA);
+            }
 
+            Reservation reservationData = optionalReservation.get();
 
+            GetOrderIdByReservationDto data = new GetOrderIdByReservationDto(reservationData);
 
-
-
-
-
-
-
-
-
-
-
-
-
+            return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
+        }
+    }
 
 
 }

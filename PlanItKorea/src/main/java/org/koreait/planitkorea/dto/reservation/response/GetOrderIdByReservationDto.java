@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ReservationResponseDto {
+public class GetOrderIdByReservationDto {
     private Long id;
     private Long userId;
     private Long productId;
@@ -22,7 +22,7 @@ public class ReservationResponseDto {
     private String orderId;
     private int reservationStatus;
 
-    public ReservationResponseDto(Reservation reservation) {
+    public GetOrderIdByReservationDto(Reservation reservation) {
         this.id = reservation.getId();
         this.userId = reservation.getUser().getId();
         this.productId = reservation.getProduct().getId();

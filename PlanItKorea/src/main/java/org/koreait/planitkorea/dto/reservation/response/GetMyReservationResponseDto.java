@@ -26,6 +26,8 @@ public class GetMyReservationResponseDto {
 
     private LocalDateTime endDate;
 
+    private String orderId;
+
     private int reservationStatus;
 
     private String productImage;
