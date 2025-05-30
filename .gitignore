@@ -1,30 +1,21 @@
 ### macOS ###
-# General
 .DS_Store
 .AppleDouble
 .LSOverride
 
-# Windows
+### Windows ###
 Thumbs.db
 ehthumbs.db
 Desktop.ini
 $RECYCLE.BIN/
 
-# IntelliJ IDEA
-.idea/
-*.iml
-*.iws
-out/
-target/
-
-# Java / Spring Boot
+### Java / Spring Boot ###
 *.class
 *.jar
 *.war
 *.ear
 *.log
 *.project
-application.properties
 *.classpath
 *.settings/
 target/
@@ -33,40 +24,62 @@ mvnw
 mvnw.cmd
 **/mvnw
 **/mvnw.cmd
+application.properties
 
-# Lombok
-*.lombok
-
-# Gradle files
+### Gradle ###
 .gradle/
 build/
 !gradle/wrapper/gradle-wrapper.jar
 **/build/
 
-# Node.js / React (TypeScript)
+### Lombok ###
+*.lombok
+
+### Node.js / React ###
 node_modules/
 dist/
 build/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.env
-.env.*.local
-.vscode/
 
-# TypeScript
+### TypeScript ###
 *.tsbuildinfo
 
-# MySQL-related
+### MySQL-related ###
 mysql-data/
 
-# Logs
+### Logs ###
 *.log
 logs/
 log/
 *.out
 
-# Other settings
+### IDEs ###
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+out/
+
+# STS
+.apt_generated
+.factorypath
+.springBeans
+.sts4-cache
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# VS Code
+.vscode/
+
+### Other ###
 *.env
+*.env.*.local
 *.swp
 *.swo
