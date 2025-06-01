@@ -3,9 +3,26 @@ package org.koreait.planitkorea.service.implement;
 import lombok.RequiredArgsConstructor;
 import org.koreait.planitkorea.common.constant.ResponseMessage;
 import org.koreait.planitkorea.dto.ResponseDto;
+<<<<<<< HEAD
 import org.koreait.planitkorea.dto.User.request.DeleteRequestDto;
 import org.koreait.planitkorea.dto.User.request.UpdatePasswordDto;
 import org.koreait.planitkorea.dto.User.request.UpdateUserRequestDto;
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+import org.koreait.planitkorea.dto.user.request.DeleteRequestDto;
+import org.koreait.planitkorea.dto.user.request.UpdateUserRequestDto;
+=======
+import org.koreait.planitkorea.dto.User.request.DeleteRequestDto;
+import org.koreait.planitkorea.dto.User.request.UpdatePasswordDto;
+import org.koreait.planitkorea.dto.User.request.UpdateUserRequestDto;
+>>>>>>> 1d9962e (20250131 pyj password)
+=======
+import org.koreait.planitkorea.dto.user.request.DeleteRequestDto;
+import org.koreait.planitkorea.dto.user.request.UpdatePasswordDto;
+import org.koreait.planitkorea.dto.user.request.UpdateUserRequestDto;
+>>>>>>> d5b8dc4 (20250131 shy)
+>>>>>>> bb0d688 (chore: 프로젝트 구조 정리 및 파일 이동)
 import org.koreait.planitkorea.entity.User;
 import org.koreait.planitkorea.repository.UserRepository;
 import org.koreait.planitkorea.service.UserService;
@@ -88,6 +105,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+<<<<<<< HEAD
     public ResponseDto<String> findUserId(String userName, String userPhone) {
         String data = null;
 
@@ -108,6 +126,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+=======
+>>>>>>> bb0d688 (chore: 프로젝트 구조 정리 및 파일 이동)
     public ResponseDto<Boolean> resetPassword(Long id, UpdatePasswordDto dto) {
         String newPassword = dto.getNewPassword();
         if(newPassword == null || newPassword.isEmpty() || !newPassword.matches("^(?=.*[!@#$%^&*])[A-Za-z\\d!@#$%^&*]{8,}$")) {

@@ -27,7 +27,11 @@ public class MailServiceImpl implements MailService {
     private final UserRepository userRepository;
 
     @Value("${spring.mail.username}")
+<<<<<<< HEAD
     private String senderEmail;
+=======
+    private static String senderEmail;
+>>>>>>> bb0d688 (chore: 프로젝트 구조 정리 및 파일 이동)
 
     @Override
     public MimeMessage createMail(String mail, String token) throws MessagingException {
