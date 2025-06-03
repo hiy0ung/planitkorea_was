@@ -18,11 +18,10 @@ public class AuthController {
 
     private final AuthService authService;
 
-    public static final String SIGN_UP = "/signUp";
+    public static final String SIGN_UP = "/sign-up";
     public static final String LOGIN = "/login";
-    public static final String USER_ID_DUPLICATION_CHECK = "/signUp/search/userId";
-    public static final String USER_EMAIL_DUPLICATION_CHECK = "/signUp/search/userEmail";
-    public static final String FIND_USER_ID = "users/user-id";
+    public static final String USER_ID_DUPLICATION_CHECK = "/sign-up/search/user-id";
+    public static final String USER_EMAIL_DUPLICATION_CHECK = "/sign-up/search/user-email";
 
     @PostMapping(SIGN_UP)
     public ResponseEntity<ResponseDto<SignUpResponseDto>> signUp(@Valid @RequestBody SignUpRequestDto dto) {
@@ -50,17 +49,6 @@ public class AuthController {
     @PostMapping(USER_EMAIL_DUPLICATION_CHECK)
     public ResponseEntity<ResponseDto<UserEmailDuplicationResponseDto>> userIdDuplicationCheck(@Valid @RequestBody UserEmailDuplicationRequestDto dto) {
         ResponseDto<UserEmailDuplicationResponseDto> response = authService.userEmailDuplicationCheck(dto);
-        HttpStatus status = response.isResult() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
-        return ResponseEntity.status(status).body(response);
-    }
-
-    // 아이디 찾기
-    @GetMapping(FIND_USER_ID)
-    public ResponseEntity<ResponseDto<String>> findUserId(
-            @Valid @RequestParam String userName,
-            @Valid @RequestParam String userPhone
-    ) {
-        ResponseDto<String> response = authService.findUserId(userName, userPhone);
         HttpStatus status = response.isResult() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
         return ResponseEntity.status(status).body(response);
     }

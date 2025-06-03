@@ -13,6 +13,4 @@ public interface AuthService {
     ResponseDto<UserIdDuplicationResponseDto> userIdDuplicationCheck(@Valid UserIdDuplicationRequestDto dto);
 
     ResponseDto<UserEmailDuplicationResponseDto> userEmailDuplicationCheck(@Valid UserEmailDuplicationRequestDto dto);
-
-    ResponseDto<String> findUserId(@Valid String userName, @Valid String userPhone);
 }

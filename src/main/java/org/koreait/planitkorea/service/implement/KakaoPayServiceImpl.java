@@ -38,9 +38,6 @@ public class KakaoPayServiceImpl implements KakaoPayService {
     private final String KAKAO_PAY_API_URL = "https://open-api.kakaopay.com/online/v1/payment/ready"; // 결제 요청 URL
 
 
-
-
-
     @Override
     public ResponseDto<PaymentResponseDto> requestPayment(PaymentRequestDto dto) {
         try {

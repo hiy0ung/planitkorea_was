@@ -3,9 +3,9 @@ package org.koreait.planitkorea.service.implement;
 import lombok.RequiredArgsConstructor;
 import org.koreait.planitkorea.common.constant.ResponseMessage;
 import org.koreait.planitkorea.dto.ResponseDto;
-import org.koreait.planitkorea.dto.user.request.DeleteRequestDto;
-import org.koreait.planitkorea.dto.user.request.UpdatePasswordDto;
-import org.koreait.planitkorea.dto.user.request.UpdateUserRequestDto;
+import org.koreait.planitkorea.dto.User.request.DeleteRequestDto;
+import org.koreait.planitkorea.dto.User.request.UpdatePasswordDto;
+import org.koreait.planitkorea.dto.User.request.UpdateUserRequestDto;
 import org.koreait.planitkorea.entity.User;
 import org.koreait.planitkorea.repository.UserRepository;
 import org.koreait.planitkorea.service.UserService;
@@ -85,6 +85,26 @@ public class UserServiceImpl implements UserService {
             e.printStackTrace();
             return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
         }
+    }
+
+    @Override
+    public ResponseDto<String> findUserId(String userName, String userPhone) {
+        String data = null;
+
+        try {
+            Optional<User> optionalUser = userRepository.findByUserNameAndUserPhone(userName, userPhone);
+
+            if(optionalUser.isEmpty()) {
+                return ResponseDto.setFailed(ResponseMessage.NOT_EXIST_USER);
+            }
+            User user = optionalUser.get();
+
+            data = user.getUserId();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseDto.setFailed(ResponseMessage.NOT_EXIST_USER);
+        }
+        return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
     }
 
     @Override

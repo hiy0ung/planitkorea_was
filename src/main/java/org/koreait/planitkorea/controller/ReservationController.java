@@ -24,7 +24,6 @@ public class ReservationController {
     private final ReservationService reservationService;
 
     private static final String POST_RESERVATION = "";
-    private static final String DEL_RESERVATION = "/{id}";
     private static final String GET_ORDER_ID = "/{orderId}";
 
 
@@ -50,12 +49,12 @@ public class ReservationController {
     }
 
     // 예약 삭제
-    @DeleteMapping
+    @DeleteMapping("/{reservationId}")
     public ResponseEntity<ResponseDto<Boolean>> deleteReservation (
             @AuthenticationPrincipal Long userId,
-            @PathVariable Long id
+            @PathVariable Long reservationId
     ) {
-        ResponseDto<Boolean> response = reservationService.deleteReservation(userId, id);
+        ResponseDto<Boolean> response = reservationService.deleteReservation(userId, reservationId);
         HttpStatus status = response.isResult() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
         return ResponseEntity.status(status).body(response);
     }

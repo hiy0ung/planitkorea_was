@@ -11,7 +11,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProductReviewResponseDto {
-    private Long id;
+    private Long reviewId;
 
     private Long productId;
 
@@ -24,7 +24,7 @@ public class ProductReviewResponseDto {
     private String userStringId;
 
     public ProductReviewResponseDto(Review review) {
-        this.id = review.getId();
+        this.reviewId = review.getId();
         this.productId = review.getProductId();
         this.userId = review.getUserId();
         this.reviewCommend = review.getReviewCommend();
