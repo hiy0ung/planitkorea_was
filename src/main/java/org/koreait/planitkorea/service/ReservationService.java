@@ -19,6 +19,9 @@ public interface ReservationService {
     ResponseDto<List<GetMyReservationResponseDto>> getMyReservation(Long userId);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> a1c274a (refactor: 변수명 통일)
     ResponseDto<Boolean> deleteReservation(Long userId, Long reservationId);
 
     ResponseDto<GetOrderIdByReservationDto> getOrderIdReservation(String orderId);

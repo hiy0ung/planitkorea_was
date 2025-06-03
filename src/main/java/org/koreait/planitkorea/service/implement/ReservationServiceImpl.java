@@ -151,6 +151,7 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
 <<<<<<< HEAD
+<<<<<<< HEAD
     public ResponseDto<Boolean> deleteReservation(Long userId, Long reservationId) {
         try {
             Optional<Reservation> optionalReservation = reservationRepository.findById(reservationId);
@@ -159,6 +160,11 @@ public class ReservationServiceImpl implements ReservationService {
         try {
             Optional<Reservation> optionalReservation = reservationRepository.findById(id);
 >>>>>>> bb0d688 (chore: 프로젝트 구조 정리 및 파일 이동)
+=======
+    public ResponseDto<Boolean> deleteReservation(Long userId, Long reservationId) {
+        try {
+            Optional<Reservation> optionalReservation = reservationRepository.findById(reservationId);
+>>>>>>> a1c274a (refactor: 변수명 통일)
             if(optionalReservation.isEmpty()) {
                 return ResponseDto.setSuccess(ResponseMessage.NOT_EXIST_DATA, false);
             }
@@ -170,10 +176,14 @@ public class ReservationServiceImpl implements ReservationService {
             }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             reservationRepository.deleteById(reservationId);
 =======
             reservationRepository.deleteById(id);
 >>>>>>> bb0d688 (chore: 프로젝트 구조 정리 및 파일 이동)
+=======
+            reservationRepository.deleteById(reservationId);
+>>>>>>> a1c274a (refactor: 변수명 통일)
             return ResponseDto.setSuccess(ResponseMessage.SUCCESS, true);
 
         } catch (Exception e) {

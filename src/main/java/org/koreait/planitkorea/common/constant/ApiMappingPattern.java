@@ -34,6 +34,7 @@ public class ApiMappingPattern {
 >>>>>>> 02f8193 (20250117 shy)
     public static final String USER = "api/v1/users";
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9c8cec8 (20250116 pyj)
 >>>>>>> 8152199 (feat: user 조회, 수정, 탈퇴 추가):PlanItKorea/src/main/java/org/koreait/planitkorea/common/constant/ApiMappingPattern.java
 =======
@@ -44,6 +45,9 @@ public class ApiMappingPattern {
 <<<<<<< HEAD
 >>>>>>> 1d9962e (20250131 pyj password)
 =======
+=======
+    public static final String MAIL = "api/v1/users/mails";
+>>>>>>> 28d444e (refactor: 변수명 통일)
     public static final String KAKAO_PAY = "api/v1/kakaoPay";
 
 >>>>>>> bec8fdb (feat: kakaopay 결제 로직 추가)

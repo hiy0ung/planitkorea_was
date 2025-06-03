@@ -10,6 +10,7 @@ import org.koreait.planitkorea.dto.User.request.UpdateUserRequestDto;
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import org.koreait.planitkorea.dto.user.request.DeleteRequestDto;
 import org.koreait.planitkorea.dto.user.request.UpdateUserRequestDto;
 =======
@@ -22,7 +23,15 @@ import org.koreait.planitkorea.dto.user.request.DeleteRequestDto;
 import org.koreait.planitkorea.dto.user.request.UpdatePasswordDto;
 import org.koreait.planitkorea.dto.user.request.UpdateUserRequestDto;
 >>>>>>> d5b8dc4 (20250131 shy)
+<<<<<<< HEAD
 >>>>>>> bb0d688 (chore: 프로젝트 구조 정리 및 파일 이동)
+=======
+=======
+import org.koreait.planitkorea.dto.User.request.DeleteRequestDto;
+import org.koreait.planitkorea.dto.User.request.UpdatePasswordDto;
+import org.koreait.planitkorea.dto.User.request.UpdateUserRequestDto;
+>>>>>>> 28d444e (refactor: 변수명 통일)
+>>>>>>> a1c274a (refactor: 변수명 통일)
 import org.koreait.planitkorea.entity.User;
 import org.koreait.planitkorea.repository.UserRepository;
 import org.koreait.planitkorea.service.UserService;
@@ -106,6 +115,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> a1c274a (refactor: 변수명 통일)
     public ResponseDto<String> findUserId(String userName, String userPhone) {
         String data = null;
 
@@ -126,8 +138,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+<<<<<<< HEAD
 =======
 >>>>>>> bb0d688 (chore: 프로젝트 구조 정리 및 파일 이동)
+=======
+>>>>>>> a1c274a (refactor: 변수명 통일)
     public ResponseDto<Boolean> resetPassword(Long id, UpdatePasswordDto dto) {
         String newPassword = dto.getNewPassword();
         if(newPassword == null || newPassword.isEmpty() || !newPassword.matches("^(?=.*[!@#$%^&*])[A-Za-z\\d!@#$%^&*]{8,}$")) {

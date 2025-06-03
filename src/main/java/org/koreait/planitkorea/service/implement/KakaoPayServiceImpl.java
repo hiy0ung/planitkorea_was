@@ -57,10 +57,13 @@ public class KakaoPayServiceImpl implements KakaoPayService {
     private final String KAKAO_PAY_APPROVE_URL = "https://kapi.kakao.com/v1/payment/approve"; // 결제 승인 URL
 
 
+<<<<<<< HEAD
 
 >>>>>>> bb0d688 (chore: 프로젝트 구조 정리 및 파일 이동)
 
 
+=======
+>>>>>>> a1c274a (refactor: 변수명 통일)
     @Override
     public ResponseDto<PaymentResponseDto> requestPayment(PaymentRequestDto dto) {
         try {

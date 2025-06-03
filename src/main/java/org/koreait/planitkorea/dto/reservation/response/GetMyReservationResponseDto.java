@@ -11,10 +11,14 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class GetMyReservationResponseDto {
 <<<<<<< HEAD
+<<<<<<< HEAD
     private Long reservationId;
 =======
     private Long id;
 >>>>>>> bb0d688 (chore: 프로젝트 구조 정리 및 파일 이동)
+=======
+    private Long reservationId;
+>>>>>>> a1c274a (refactor: 변수명 통일)
 
     private Long userId;
 

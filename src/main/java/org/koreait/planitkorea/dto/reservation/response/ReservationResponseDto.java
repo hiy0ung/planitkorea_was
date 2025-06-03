@@ -12,10 +12,14 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class ReservationResponseDto {
 <<<<<<< HEAD
+<<<<<<< HEAD
     private Long reservationId;
 =======
     private Long id;
 >>>>>>> bb0d688 (chore: 프로젝트 구조 정리 및 파일 이동)
+=======
+    private Long reservationId;
+>>>>>>> a1c274a (refactor: 변수명 통일)
     private Long userId;
     private Long productId;
     private Long subProductId;
@@ -29,12 +33,15 @@ public class ReservationResponseDto {
 
     public ReservationResponseDto(Reservation reservation) {
         this.reservationId = reservation.getId();
+<<<<<<< HEAD
 =======
     private int reservationStatus;
 
     public ReservationResponseDto(Reservation reservation) {
         this.id = reservation.getId();
 >>>>>>> bb0d688 (chore: 프로젝트 구조 정리 및 파일 이동)
+=======
+>>>>>>> a1c274a (refactor: 변수명 통일)
         this.userId = reservation.getUser().getId();
         this.productId = reservation.getProduct().getId();
         this.subProductId = reservation.getSubProduct().getId();

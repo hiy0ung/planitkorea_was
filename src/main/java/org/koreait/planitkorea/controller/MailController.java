@@ -26,10 +26,14 @@ public class MailController {
 
     @PostMapping(SEND)
     public ResponseEntity<ResponseDto<String>> sendEmail(@RequestBody SendMailRequestDto dto) throws MessagingException {
+<<<<<<< HEAD
 <<<<<<< HEAD:src/main/java/org/koreait/planitkorea/controller/MailController.java
         System.out.println("Received DTO: " + dto);
 =======
 >>>>>>> be57e07 (feat: 비밀번호 찾기, 이메일 전송 로직 추가):PlanItKorea/src/main/java/org/koreait/planitkorea/controller/MailController.java
+=======
+        System.out.println("Received DTO: " + dto);
+>>>>>>> a1c274a (refactor: 변수명 통일)
         ResponseDto<String> response = mailService.sendMessage(dto);
         HttpStatus status = response.isResult() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
         return ResponseEntity.status(status).body(response);
