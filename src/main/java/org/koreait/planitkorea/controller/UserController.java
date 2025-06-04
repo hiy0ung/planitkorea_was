@@ -1,11 +1,12 @@
 package org.koreait.planitkorea.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.koreait.planitkorea.common.constant.ApiMappingPattern;
 import org.koreait.planitkorea.dto.ResponseDto;
-import org.koreait.planitkorea.dto.user.request.DeleteRequestDto;
-import org.koreait.planitkorea.dto.user.request.UpdatePasswordDto;
-import org.koreait.planitkorea.dto.user.request.UpdateUserRequestDto;
+import org.koreait.planitkorea.dto.User.request.DeleteRequestDto;
+import org.koreait.planitkorea.dto.User.request.UpdatePasswordDto;
+import org.koreait.planitkorea.dto.User.request.UpdateUserRequestDto;
 import org.koreait.planitkorea.entity.User;
 import org.koreait.planitkorea.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,7 @@ public class UserController {
 
     private final UserService userService;
 
+    public static final String FIND_USER_ID = "/find-id";
     private static final String RESET_PW = "/password";
 
     // 내 정보 조회
@@ -50,6 +52,18 @@ public class UserController {
             @RequestBody DeleteRequestDto dto
     ) {
         ResponseDto<Boolean> response = userService.deleteUser(id, dto);
+        HttpStatus status = response.isResult() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
+        return ResponseEntity.status(status).body(response);
+    }
+
+
+    // 아이디 찾기
+    @GetMapping(FIND_USER_ID)
+    public ResponseEntity<ResponseDto<String>> findUserId(
+            @Valid @RequestParam String userName,
+            @Valid @RequestParam String userPhone
+    ) {
+        ResponseDto<String> response = userService.findUserId(userName, userPhone);
         HttpStatus status = response.isResult() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
         return ResponseEntity.status(status).body(response);
     }

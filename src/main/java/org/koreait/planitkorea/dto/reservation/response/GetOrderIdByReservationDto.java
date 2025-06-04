@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class GetOrderIdByReservationDto {
-    private Long id;
+    private Long reservationId;
     private Long userId;
     private Long productId;
     private Long subProductId;
@@ -23,7 +23,7 @@ public class GetOrderIdByReservationDto {
     private int reservationStatus;
 
     public GetOrderIdByReservationDto(Reservation reservation) {
-        this.id = reservation.getId();
+        this.reservationId = reservation.getId();
         this.userId = reservation.getUser().getId();
         this.productId = reservation.getProduct().getId();
         this.subProductId = reservation.getSubProduct().getId();

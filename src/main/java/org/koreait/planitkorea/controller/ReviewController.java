@@ -35,7 +35,7 @@ public class ReviewController {
     }
 
     // 상품 내 리뷰 조회
-    @GetMapping("/auth/{productId}")
+    @GetMapping("/{productId}")
     public ResponseEntity<ResponseDto<List<ProductReviewResponseDto>>> getProductReviews (
             @PathVariable Long productId
     ) {

@@ -22,6 +22,7 @@ public class MailController {
 
     @PostMapping(SEND)
     public ResponseEntity<ResponseDto<String>> sendEmail(@RequestBody SendMailRequestDto dto) throws MessagingException {
+        System.out.println("Received DTO: " + dto);
         ResponseDto<String> response = mailService.sendMessage(dto);
         HttpStatus status = response.isResult() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
         return ResponseEntity.status(status).body(response);

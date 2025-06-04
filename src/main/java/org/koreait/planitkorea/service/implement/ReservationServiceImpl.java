@@ -114,9 +114,9 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public ResponseDto<Boolean> deleteReservation(Long userId, Long id) {
+    public ResponseDto<Boolean> deleteReservation(Long userId, Long reservationId) {
         try {
-            Optional<Reservation> optionalReservation = reservationRepository.findById(id);
+            Optional<Reservation> optionalReservation = reservationRepository.findById(reservationId);
             if(optionalReservation.isEmpty()) {
                 return ResponseDto.setSuccess(ResponseMessage.NOT_EXIST_DATA, false);
             }
@@ -127,7 +127,7 @@ public class ReservationServiceImpl implements ReservationService {
                 return ResponseDto.setFailed(ResponseMessage.NO_PERMISSION);
             }
 
-            reservationRepository.deleteById(id);
+            reservationRepository.deleteById(reservationId);
             return ResponseDto.setSuccess(ResponseMessage.SUCCESS, true);
 
         } catch (Exception e) {
