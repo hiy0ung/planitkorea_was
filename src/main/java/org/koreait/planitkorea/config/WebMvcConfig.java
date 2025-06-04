@@ -13,6 +13,7 @@ import java.nio.charset.StandardCharsets;
 
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
+<<<<<<< HEAD
 <<<<<<< HEAD:src/main/java/org/koreait/planitkorea/config/WebMvcConfig.java
     @Value("${file.path}")
     private String uploadPath;
@@ -32,6 +33,15 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/image/**")
                 .addResourceLocations("file:///" + rootPath)
 >>>>>>> 65e6b84 (fix: reservation 로직 수정):PlanItKorea/src/main/java/org/koreait/planitkorea/config/WebMvcConfig.java
+=======
+    @Value("${file.path}")
+    private String uploadPath;
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/file/**")
+                .addResourceLocations("file:" + uploadPath)
+>>>>>>> b93696e (fix: 이미지처리설정변경)
                 .resourceChain(true)
                 .addResolver(new PathResourceResolver() {
                     @Override

@@ -90,6 +90,7 @@ public class WebSecurityConfig {
                                 new AntPathRequestMatcher("/api/v1/users/mails/**"),
 >>>>>>> 28d444e (refactor: 변수명 통일)
                                 new AntPathRequestMatcher("/api/v1/boards/**"),
+<<<<<<< HEAD
                                 new AntPathRequestMatcher("/image/**"),
 <<<<<<< HEAD
                                 new AntPathRequestMatcher("/api/v1/products/**")
@@ -101,6 +102,9 @@ public class WebSecurityConfig {
                                 new AntPathRequestMatcher("/api/v1/boards/**"),
                                 new AntPathRequestMatcher("/image/**"),
 =======
+=======
+                                new AntPathRequestMatcher("/file/**"),
+>>>>>>> 8215917 (fix: 이미지처리설정변경)
                                 new AntPathRequestMatcher("/api/v1/products/**"),
 <<<<<<< HEAD
 <<<<<<< HEAD
