@@ -13,15 +13,13 @@ import java.nio.charset.StandardCharsets;
 
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
-    @Value("${user.dir}")
-    private String projectPath;
+    @Value("${file.path}")
+    private String uploadPath;
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-
-        String rootPath = projectPath + "/image/";
-        registry.addResourceHandler("/image/**")
-                .addResourceLocations("file:///" + rootPath)
+        registry.addResourceHandler("/file/**")
+                .addResourceLocations("file:" + uploadPath)
                 .resourceChain(true)
                 .addResolver(new PathResourceResolver() {
                     @Override

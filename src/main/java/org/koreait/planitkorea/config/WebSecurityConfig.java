@@ -66,7 +66,7 @@ public class WebSecurityConfig {
                                 new AntPathRequestMatcher("/api/v1/users/find-id"),
                                 new AntPathRequestMatcher("/api/v1/users/mails/**"),
                                 new AntPathRequestMatcher("/api/v1/boards/**"),
-                                new AntPathRequestMatcher("/image/**"),
+                                new AntPathRequestMatcher("/file/**"),
                                 new AntPathRequestMatcher("/api/v1/products/**"),
                                 new AntPathRequestMatcher("/api/v1/reviews/{productId}"),
                                 new AntPathRequestMatcher("/oauth2/callback/*"),
