@@ -13,12 +13,21 @@ public interface UserRepository  extends JpaRepository<User, Long> {
     boolean existsByUserId(String userId);
 
     boolean existsByUserEmail(String userEmail);
+<<<<<<< HEAD:src/main/java/org/koreait/planitkorea/repository/UserRepository.java
 
     User findBySnsIdAndJoinPath(String snsId, String registration);
 
     Optional<User> findByUserName(String userName);
 
     Optional<User> findByUserIdAndUserName(String userId, String userName);
+<<<<<<< HEAD:src/main/java/org/koreait/planitkorea/repository/UserRepository.java
 
     Optional<User> findByUserNameAndUserPhone(String userName, String userPhone);
+=======
+    User findBySnsIdAndJoinPath(String snsId, String registration);
+
+    Optional<User> findByUserName(String userName);
+>>>>>>> 6ee97db (feat: OAuth2):PlanItKorea/src/main/java/org/koreait/planitkorea/repository/UserRepository.java
+=======
+>>>>>>> be57e07 (feat: 비밀번호 찾기, 이메일 전송 로직 추가):PlanItKorea/src/main/java/org/koreait/planitkorea/repository/UserRepository.java
 }

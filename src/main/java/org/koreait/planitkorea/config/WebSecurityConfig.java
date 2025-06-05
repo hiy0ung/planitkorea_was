@@ -63,6 +63,7 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
                                 new AntPathRequestMatcher("/api/v1/auth/**"),
+<<<<<<< HEAD:src/main/java/org/koreait/planitkorea/config/WebSecurityConfig.java
                                 new AntPathRequestMatcher("/api/v1/users/find-id"),
                                 new AntPathRequestMatcher("/api/v1/users/mails/**"),
                                 new AntPathRequestMatcher("/api/v1/boards/**"),
@@ -71,6 +72,63 @@ public class WebSecurityConfig {
                                 new AntPathRequestMatcher("/api/v1/reviews/{productId}"),
                                 new AntPathRequestMatcher("/oauth2/callback/*"),
                                 new AntPathRequestMatcher("/api/v1/reviews/auth/**")
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+                                new AntPathRequestMatcher("/api/v1/boards/**")
+=======
+                                new AntPathRequestMatcher("/image/**")
+>>>>>>> f08a91c (pyj)
+<<<<<<< HEAD:src/main/java/org/koreait/planitkorea/config/WebSecurityConfig.java
+>>>>>>> 65e6b84 (fix: reservation 로직 수정):PlanItKorea/src/main/java/org/koreait/planitkorea/config/WebSecurityConfig.java
+=======
+=======
+=======
+                                new AntPathRequestMatcher("/api/v1/users/find-id"),
+                                new AntPathRequestMatcher("/api/v1/users/mails/**"),
+>>>>>>> 28d444e (refactor: 변수명 통일)
+                                new AntPathRequestMatcher("/api/v1/boards/**"),
+<<<<<<< HEAD
+                                new AntPathRequestMatcher("/image/**"),
+<<<<<<< HEAD
+                                new AntPathRequestMatcher("/api/v1/products/**")
+>>>>>>> 3c1f589 (20250131 shy)
+<<<<<<< HEAD:src/main/java/org/koreait/planitkorea/config/WebSecurityConfig.java
+>>>>>>> abf6421 (refactor: 대소문자변경):PlanItKorea/src/main/java/org/koreait/planitkorea/config/WebSecurityConfig.java
+=======
+=======
+                                new AntPathRequestMatcher("/api/v1/boards/**"),
+                                new AntPathRequestMatcher("/image/**"),
+=======
+=======
+                                new AntPathRequestMatcher("/file/**"),
+>>>>>>> 8215917 (fix: 이미지처리설정변경)
+                                new AntPathRequestMatcher("/api/v1/products/**"),
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> d5b8dc4 (20250131 shy)
+                                new AntPathRequestMatcher("/oauth2/callback/*")
+<<<<<<< HEAD
+>>>>>>> bfdd46a (20250126 OAuth2)
+<<<<<<< HEAD:src/main/java/org/koreait/planitkorea/config/WebSecurityConfig.java
+>>>>>>> 6ee97db (feat: OAuth2):PlanItKorea/src/main/java/org/koreait/planitkorea/config/WebSecurityConfig.java
+=======
+=======
+
+>>>>>>> 1d9962e (20250131 pyj password)
+<<<<<<< HEAD:src/main/java/org/koreait/planitkorea/config/WebSecurityConfig.java
+>>>>>>> be57e07 (feat: 비밀번호 찾기, 이메일 전송 로직 추가):PlanItKorea/src/main/java/org/koreait/planitkorea/config/WebSecurityConfig.java
+=======
+=======
+=======
+                                new AntPathRequestMatcher("/api/v1/reviews/{productId}"),
+>>>>>>> 28d444e (refactor: 변수명 통일)
+                                new AntPathRequestMatcher("/oauth2/callback/*"),
+                                new AntPathRequestMatcher("/api/v1/reviews/auth/**")
+>>>>>>> 7fb65f5 (feat: review 로직 추가)
+>>>>>>> c6e5093 (feat: review 로직 추가):PlanItKorea/src/main/java/org/koreait/planitkorea/config/WebSecurityConfig.java
                         )
                         .permitAll()
                         .anyRequest().authenticated())

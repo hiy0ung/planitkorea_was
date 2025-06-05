@@ -43,9 +43,6 @@ public class Reservation {
     @Column(name = "end_date", nullable = false)
     private LocalDate endDate;
 
-    @Column(name = "order_id", nullable = false)
-    private String orderId;
-
     @Column(name = "reservation_status", nullable = false, columnDefinition = "INT DEFAULT 1")
     private int reservationStatus;
 }

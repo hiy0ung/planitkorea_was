@@ -6,7 +6,10 @@ import org.koreait.planitkorea.common.constant.ResponseMessage;
 import org.koreait.planitkorea.dto.ResponseDto;
 import org.koreait.planitkorea.dto.reservation.request.CreateReservationRequestDto;
 import org.koreait.planitkorea.dto.reservation.response.GetMyReservationResponseDto;
+<<<<<<< HEAD
 import org.koreait.planitkorea.dto.reservation.response.GetOrderIdByReservationDto;
+=======
+>>>>>>> bb0d688 (chore: 프로젝트 구조 정리 및 파일 이동)
 import org.koreait.planitkorea.dto.reservation.response.ReservationResponseDto;
 import org.koreait.planitkorea.entity.Product;
 import org.koreait.planitkorea.entity.Reservation;
@@ -17,7 +20,10 @@ import org.koreait.planitkorea.repository.ReservationRepository;
 import org.koreait.planitkorea.repository.SubProductRepository;
 import org.koreait.planitkorea.repository.UserRepository;
 import org.koreait.planitkorea.service.ReservationService;
+<<<<<<< HEAD
 import org.springframework.dao.DataIntegrityViolationException;
+=======
+>>>>>>> bb0d688 (chore: 프로젝트 구조 정리 및 파일 이동)
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -46,6 +52,7 @@ public class ReservationServiceImpl implements ReservationService {
         SubProduct subProduct = subProductRepository.findById(dto.getSubProductId())
                 .orElseThrow(() -> new IllegalArgumentException(ResponseMessage.NOT_EXIST_DATA));
 
+<<<<<<< HEAD
         if (dto.getPerson() == null || dto.getTotalPrice() == null || dto.getStartDate() == null || dto.getEndDate() == null) {
             throw new IllegalArgumentException(ResponseMessage.VALIDATION_FAIL);
         }
@@ -60,6 +67,23 @@ public class ReservationServiceImpl implements ReservationService {
                     .startDate(dto.getStartDate())
                     .endDate(dto.getEndDate())
                     .orderId(dto.getOrderId())
+=======
+        Long person = dto.getPerson();
+        String totalPrice = dto.getTotalPrice();
+        LocalDate startDate = dto.getStartDate();
+        LocalDate endDate = dto.getEndDate();
+
+        try {
+            Reservation reservation = Reservation.builder()
+                    .id(null)
+                    .user(user)
+                    .product(product)
+                    .subProduct(subProduct)
+                    .person(person)
+                    .totalPrice(totalPrice)
+                    .startDate(LocalDate.from(startDate))
+                    .endDate(LocalDate.from(endDate))
+>>>>>>> bb0d688 (chore: 프로젝트 구조 정리 및 파일 이동)
                     .reservationStatus(1)
                     .build();
 
@@ -67,6 +91,7 @@ public class ReservationServiceImpl implements ReservationService {
             data = new ReservationResponseDto(reservation);
             return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
 
+<<<<<<< HEAD
         } catch (DataIntegrityViolationException e) {
             return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
         } catch (Exception e) {
@@ -74,6 +99,14 @@ public class ReservationServiceImpl implements ReservationService {
         }
     }
 
+=======
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
+        }
+
+    }
+>>>>>>> bb0d688 (chore: 프로젝트 구조 정리 및 파일 이동)
 
     @Override
     public ResponseDto<List<GetMyReservationResponseDto>> getMyReservation(Long userId) {
@@ -98,7 +131,10 @@ public class ReservationServiceImpl implements ReservationService {
                                 reservation.getTotalPrice(),
                                 reservation.getStartDate().atStartOfDay(),
                                 reservation.getEndDate().atStartOfDay(),
+<<<<<<< HEAD
                                 reservation.getOrderId(),
+=======
+>>>>>>> bb0d688 (chore: 프로젝트 구조 정리 및 파일 이동)
                                 reservation.getReservationStatus(),
                                 productImage,
                                 productName
@@ -114,9 +150,21 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
+<<<<<<< HEAD
+<<<<<<< HEAD
     public ResponseDto<Boolean> deleteReservation(Long userId, Long reservationId) {
         try {
             Optional<Reservation> optionalReservation = reservationRepository.findById(reservationId);
+=======
+    public ResponseDto<Boolean> deleteReservation(Long userId, Long id) {
+        try {
+            Optional<Reservation> optionalReservation = reservationRepository.findById(id);
+>>>>>>> bb0d688 (chore: 프로젝트 구조 정리 및 파일 이동)
+=======
+    public ResponseDto<Boolean> deleteReservation(Long userId, Long reservationId) {
+        try {
+            Optional<Reservation> optionalReservation = reservationRepository.findById(reservationId);
+>>>>>>> a1c274a (refactor: 변수명 통일)
             if(optionalReservation.isEmpty()) {
                 return ResponseDto.setSuccess(ResponseMessage.NOT_EXIST_DATA, false);
             }
@@ -127,7 +175,15 @@ public class ReservationServiceImpl implements ReservationService {
                 return ResponseDto.setFailed(ResponseMessage.NO_PERMISSION);
             }
 
+<<<<<<< HEAD
+<<<<<<< HEAD
             reservationRepository.deleteById(reservationId);
+=======
+            reservationRepository.deleteById(id);
+>>>>>>> bb0d688 (chore: 프로젝트 구조 정리 및 파일 이동)
+=======
+            reservationRepository.deleteById(reservationId);
+>>>>>>> a1c274a (refactor: 변수명 통일)
             return ResponseDto.setSuccess(ResponseMessage.SUCCESS, true);
 
         } catch (Exception e) {
@@ -140,6 +196,7 @@ public class ReservationServiceImpl implements ReservationService {
         // 현재시간이 endDate 뵤댜 지난 상태면 update 요청?
     }
 
+<<<<<<< HEAD
     @Override
     public ResponseDto<GetOrderIdByReservationDto> getOrderIdReservation(String orderId) {
         try {
@@ -159,6 +216,24 @@ public class ReservationServiceImpl implements ReservationService {
             return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
         }
     }
+=======
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> bb0d688 (chore: 프로젝트 구조 정리 및 파일 이동)
 
 
 }

@@ -3,7 +3,15 @@ package org.koreait.planitkorea.controller;
 import lombok.RequiredArgsConstructor;
 import org.koreait.planitkorea.common.constant.ApiMappingPattern;
 import org.koreait.planitkorea.dto.ResponseDto;
+<<<<<<< HEAD:src/main/java/org/koreait/planitkorea/controller/WishListController.java
+<<<<<<< HEAD:src/main/java/org/koreait/planitkorea/controller/WishListController.java
 import org.koreait.planitkorea.dto.wishList.response.WishListResponseDto;
+=======
+import org.koreait.planitkorea.dto.WishList.response.WishListResponseDto;
+>>>>>>> eca9fe5 (feat: wishlist 로직 추가):PlanItKorea/src/main/java/org/koreait/planitkorea/controller/WishListController.java
+=======
+import org.koreait.planitkorea.dto.wishList.response.WishListResponseDto;
+>>>>>>> abf6421 (refactor: 대소문자변경):PlanItKorea/src/main/java/org/koreait/planitkorea/controller/WishListController.java
 import org.koreait.planitkorea.service.WishListService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,17 +27,30 @@ public class WishListController {
 
     private final WishListService wishListService;
 
+<<<<<<< HEAD:src/main/java/org/koreait/planitkorea/controller/WishListController.java
     public static final String WISH_LIST_DELETE = "/{wishListId}";
 
 
     @PostMapping()
+=======
+    public static final String WISH_LIST_CREATE = "/create";
+    public static final String WISH_LIST_GET = "/get";
+    public static final String WISH_LIST_DELETE = "/delete/{wishListId}";
+
+
+    @PostMapping(WISH_LIST_CREATE)
+>>>>>>> eca9fe5 (feat: wishlist 로직 추가):PlanItKorea/src/main/java/org/koreait/planitkorea/controller/WishListController.java
     public ResponseEntity<ResponseDto<Boolean>> addWishList(@AuthenticationPrincipal Long id, @RequestParam Long productId) {
         ResponseDto<Boolean> response =  wishListService.addWishList(id, productId);
         HttpStatus status = response.isResult() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
         return ResponseEntity.status(status).body(response);
     }
 
+<<<<<<< HEAD:src/main/java/org/koreait/planitkorea/controller/WishListController.java
     @GetMapping()
+=======
+    @GetMapping(WISH_LIST_GET)
+>>>>>>> eca9fe5 (feat: wishlist 로직 추가):PlanItKorea/src/main/java/org/koreait/planitkorea/controller/WishListController.java
     public ResponseEntity<ResponseDto<List<WishListResponseDto>>> getAllWishList(@AuthenticationPrincipal Long id) {
         ResponseDto<List<WishListResponseDto>> response = wishListService.getAllWishList(id);
         HttpStatus status = response.isResult() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
