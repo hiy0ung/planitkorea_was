@@ -1,25 +1,16 @@
 package org.koreait.planitkorea.controller;
 
 import lombok.RequiredArgsConstructor;
-<<<<<<< HEAD:src/main/java/org/koreait/planitkorea/controller/ProductController.java
 import org.koreait.planitkorea.dto.product.response.ProductDetailResponseDto;
 import org.koreait.planitkorea.dto.product.response.ProductListResponseDto;
 import org.koreait.planitkorea.dto.ResponseDto;
 import org.koreait.planitkorea.dto.product.response.Top5ResponseDto;
-=======
-import org.koreait.planitkorea.dto.product.request.ProductRequestDto;
-import org.koreait.planitkorea.dto.product.response.ProductResponseDto;
-import org.koreait.planitkorea.dto.ResponseDto;
->>>>>>> abf6421 (refactor: 대소문자변경):PlanItKorea/src/main/java/org/koreait/planitkorea/controller/ProductController.java
 import org.koreait.planitkorea.service.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-<<<<<<< HEAD:src/main/java/org/koreait/planitkorea/controller/ProductController.java
 import java.time.LocalDate;
-=======
->>>>>>> abf6421 (refactor: 대소문자변경):PlanItKorea/src/main/java/org/koreait/planitkorea/controller/ProductController.java
 import java.util.List;
 
 @RestController
@@ -29,7 +20,6 @@ public class ProductController {
 
     private final ProductService productService;
 
-<<<<<<< HEAD:src/main/java/org/koreait/planitkorea/controller/ProductController.java
     public static final String TOP5 = "top5";
 
     @GetMapping("/search")
@@ -61,11 +51,6 @@ public class ProductController {
     @GetMapping
     public ResponseEntity<ResponseDto<List<ProductListResponseDto>>> getProductByCity(@RequestParam String popularRegion) {
         ResponseDto<List<ProductListResponseDto>> response = productService.getProductByCity(popularRegion);
-=======
-    @GetMapping("/search")
-    public ResponseEntity<ResponseDto<List<ProductResponseDto>>> searchAllProduct(@RequestBody ProductRequestDto dto) {
-        ResponseDto<List<ProductResponseDto>> response = productService.searchAllProduct(dto);
->>>>>>> abf6421 (refactor: 대소문자변경):PlanItKorea/src/main/java/org/koreait/planitkorea/controller/ProductController.java
         HttpStatus status = response.isResult() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
         return ResponseEntity.status(status).body(response);
     }
