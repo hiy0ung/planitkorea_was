@@ -48,8 +48,12 @@
 >>>>>>> fc94576 (refactor: 변수명 통일)
 
 ## 🔗 REST API 명세서
+<<<<<<< HEAD
 - [API 명세서 보기]()
 >>>>>>> a1c274a (refactor: 변수명 통일)
+=======
+- [API 명세서 보기](./docs/PlanItKorea_API_명세.pdf)
+>>>>>>> d2bd382 (docs: README 수정)
 - [배포 링크]()
 
 ---
