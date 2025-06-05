@@ -13,7 +13,7 @@
 ---
 
 ## 🔗 REST API 명세서
-- [API 명세서 보기]()
+- [API 명세서 보기](./docs/PlanItKorea_API_명세.pdf)
 - [배포 링크]()
 
 ---
