@@ -35,15 +35,7 @@ public class ReviewController {
     }
 
     // 상품 내 리뷰 조회
-<<<<<<< HEAD
-<<<<<<< HEAD:src/main/java/org/koreait/planitkorea/controller/ReviewController.java
     @GetMapping("/{productId}")
-=======
-    @GetMapping("/auth/{productId}")
->>>>>>> c6e5093 (feat: review 로직 추가):PlanItKorea/src/main/java/org/koreait/planitkorea/controller/ReviewController.java
-=======
-    @GetMapping("/{productId}")
->>>>>>> a1c274a (refactor: 변수명 통일)
     public ResponseEntity<ResponseDto<List<ProductReviewResponseDto>>> getProductReviews (
             @PathVariable Long productId
     ) {

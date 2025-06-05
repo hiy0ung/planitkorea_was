@@ -5,13 +5,6 @@ import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
-<<<<<<< HEAD
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-=======
->>>>>>> bb0d688 (chore: 프로젝트 구조 정리 및 파일 이동)
 
 @Entity
 @Table(name = "Products")
@@ -24,7 +17,6 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-<<<<<<< HEAD
     @Column(name = "product_name", nullable = false)
     private String productName;
 
@@ -40,20 +32,6 @@ public class Product {
     @Column(name = "product_category", nullable = false)
     private String productCategory;
 
-=======
-    @Column(name = "product_name")
-    private String productName;
-
-    @Column(name = "product_price")
-    private String productPrice;
-
-    @Column(name = "productAddress")
-    private String productAddress;
-
-    @Column(name = "product_description")
-    private String productDescription;
-
->>>>>>> bb0d688 (chore: 프로젝트 구조 정리 및 파일 이동)
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<SubProduct> subProducts;
 
@@ -62,7 +40,6 @@ public class Product {
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<ProductCity> productCities;
-<<<<<<< HEAD
 
     @ManyToMany
     @JoinTable(
@@ -71,6 +48,4 @@ public class Product {
             inverseJoinColumns = @JoinColumn(name = "facility_id")
     )
     private List<Facility> facilities = new ArrayList<>();
-=======
->>>>>>> bb0d688 (chore: 프로젝트 구조 정리 및 파일 이동)
 }
