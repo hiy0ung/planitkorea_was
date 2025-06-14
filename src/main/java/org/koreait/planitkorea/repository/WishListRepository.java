@@ -22,10 +22,15 @@ public interface WishListRepository extends JpaRepository<WishList, Long> {
             p.product_name,
             p.product_address,
             p.product_price,
-            pi.product_image
+            (
+                select pi.product_image
+                from product_images pi
+                where pi.product_id = p.id
+                order by pi.id asc
+                limit 1
+            ) as product_image
         from wish_list w
-        left outer join products p on p.id = w.product_id
-        left outer join product_images pi on pi.product_id = p.id
+        left join products p on p.id = w.product_id
         where w.user_id = :userId
 """, nativeQuery = true)
     List<Object[]> getWishListByUserId(@Param("userId") Long userId);
