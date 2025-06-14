@@ -14,12 +14,14 @@ import java.util.Optional;
 @Repository
 public interface ReservationRepository extends JpaRepository<Reservation, Long> {
 
-    @Query("SELECT r, pi.productImage, p.productName " +
+    @Query("SELECT r, MIN(pi.productImage), p.productName " +
             "FROM Reservation r " +
             "JOIN r.product p " +
-            "JOIN ProductImage pi ON  p.id = pi.product.id " +
-            "WHERE r.user.id = :userId")
+            "JOIN ProductImage pi ON p.id = pi.product.id " +
+            "WHERE r.user.id = :userId " +
+            "GROUP BY r.id, p.productName")
     List<Object[]> findAllByUserId(@Param("userId") Long userId);
+
 
     @Modifying
     @Transactional
