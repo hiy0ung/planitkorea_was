@@ -57,7 +57,3 @@ dependencies {
 	// 스프링 이메일 기능 제공
 	implementation('org.springframework.boot:spring-boot-starter-mail')
 }
-
-test {
-	useJUnitPlatform()
-}

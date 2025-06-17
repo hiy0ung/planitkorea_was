@@ -1,4 +1,4 @@
-package org.koreait.planitkorea.dto.user.request;
+package org.koreait.planitkorea.dto.User.request;
 
 import lombok.Data;
 
