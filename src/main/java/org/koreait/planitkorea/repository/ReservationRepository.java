@@ -14,12 +14,16 @@ import java.util.Optional;
 @Repository
 public interface ReservationRepository extends JpaRepository<Reservation, Long> {
 
-    @Query("SELECT r, MIN(pi.productImage), p.productName " +
-            "FROM Reservation r " +
-            "JOIN r.product p " +
-            "JOIN ProductImage pi ON p.id = pi.product.id " +
-            "WHERE r.user.id = :userId " +
-            "GROUP BY r.id, p.productName")
+    @Query(value = """
+        SELECT r.*,
+               MIN(pi.product_image) AS product_image,
+               p.product_name 
+        FROM reservations r
+        JOIN products p ON r.product_id = p.id
+        JOIN product_images pi ON p.id = pi.product_id
+        WHERE r.user_id = :userId
+        GROUP BY r.id, p.product_name
+    """, nativeQuery = true)
     List<Object[]> findAllByUserId(@Param("userId") Long userId);
 
 
