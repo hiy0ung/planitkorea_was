@@ -15,7 +15,7 @@ public interface WishListRepository extends JpaRepository<WishList, Long> {
     Optional<WishList> findByUserIdAndId(Long userId, Long id);
 
     @Query(value = """
-        select
+        SELECT
             w.id as wish_list_id,
             w.user_id,
             w.product_id,
@@ -23,15 +23,15 @@ public interface WishListRepository extends JpaRepository<WishList, Long> {
             p.product_address,
             p.product_price,
             (
-                select pi.product_image
-                from product_images pi
-                where pi.product_id = p.id
-                order by pi.id asc
-                limit 1
+                SELECT pi.product_image
+                FROM product_images pi
+                WHERE pi.product_id = p.id
+                ORDER BY pi.id asc
+                LIMIT 1
             ) as product_image
-        from wish_list w
-        left join products p on p.id = w.product_id
-        where w.user_id = :userId
+        FROM wish_list w
+        LEFT JOIN products p on p.id = w.product_id
+        WHERE w.user_id = :userId
 """, nativeQuery = true)
     List<Object[]> getWishListByUserId(@Param("userId") Long userId);
 }
