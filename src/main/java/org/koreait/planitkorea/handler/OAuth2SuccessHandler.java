@@ -40,16 +40,14 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 
             String accessToken = jwtProvider.generateJwtToken(user.getId());
             int expirTime = jwtProvider.getExpiration();
-            response.sendRedirect("http://localhost:3000/sns-success?accessToken=" + accessToken + "&expiration= + " + expirTime);
+            response.sendRedirect("http://54.180.236.165:3000/sns-success?accessToken=" + accessToken + "&expiration=" + expirTime);
         }
         else {
             String snsId = (String) attributes.get("snsId");
             String joinPath = (String) attributes.get("joinPath");
             System.out.println("snsId: " + snsId);
             System.out.println("joinPath: " + joinPath);
-            response.sendRedirect("http://localhost:3000/auth?snsId=" + snsId + "&joinPath=" + joinPath);
+            response.sendRedirect("http://54.180.236.165:3000/auth?snsId=" + snsId + "&joinPath=" + joinPath);
         }
-
     }
-
 }
