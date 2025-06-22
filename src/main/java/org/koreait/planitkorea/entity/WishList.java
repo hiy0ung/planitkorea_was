@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "Wish_List")
+@Table(name = "wish_list")
 @Data
 @Builder
 @NoArgsConstructor
