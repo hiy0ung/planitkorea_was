@@ -17,7 +17,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
     @Query(value = """
         SELECT r.*,
                MIN(pi.product_image) AS product_image,
-               p.product_name 
+               p.product_name
         FROM reservations r
         JOIN products p ON r.product_id = p.id
         JOIN product_images pi ON p.id = pi.product_id

@@ -47,7 +47,7 @@ public class User {
     @PrePersist
     private void setDefaultValues() {
         if (this.joinPath == null) {
-            this.joinPath = "HOME"; // 기본값 설정
+            this.joinPath = "home"; // 기본값 설정
         }
     }
 }
