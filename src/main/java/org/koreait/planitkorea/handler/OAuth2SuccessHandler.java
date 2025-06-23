@@ -8,6 +8,7 @@ import org.koreait.planitkorea.common.object.CustomOAuth2User;
 import org.koreait.planitkorea.entity.User;
 import org.koreait.planitkorea.provider.JwtProvider;
 import org.koreait.planitkorea.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
@@ -22,6 +23,8 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 
     private final JwtProvider jwtProvider;
     private final UserRepository userRepository;
+    @Value("${OAuth.redirect.URI}")
+    private String OAuthRedirectUri;
 
     @Override
     public void onAuthenticationSuccess(
@@ -40,14 +43,14 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 
             String accessToken = jwtProvider.generateJwtToken(user.getId());
             int expirTime = jwtProvider.getExpiration();
-            response.sendRedirect("http://54.180.236.165:3000/sns-success?accessToken=" + accessToken + "&expiration=" + expirTime);
+            response.sendRedirect(OAuthRedirectUri + "/sns-success?accessToken=" + accessToken + "&expiration=" + expirTime);
         }
         else {
             String snsId = (String) attributes.get("snsId");
             String joinPath = (String) attributes.get("joinPath");
             System.out.println("snsId: " + snsId);
             System.out.println("joinPath: " + joinPath);
-            response.sendRedirect("http://54.180.236.165:3000/auth?snsId=" + snsId + "&joinPath=" + joinPath);
+            response.sendRedirect(OAuthRedirectUri + "/signUp?snsId=" + snsId + "&joinPath=" + joinPath);
         }
     }
 }
